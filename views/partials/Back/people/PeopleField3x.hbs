@@ -1,0 +1,8 @@
+<div class="form-group row">
+    <label for="ElectionDistrictNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.ElectionDistrictNumber}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" min="1" class="form-control" id="ElectionDistrictNumber" name="ElectionDistrictNumber" value="{{People.ElectionDistrictNumber}}" placeholder="{{Label.ElectionDistrictNumber}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}} 
+    </div>
+</div>
+

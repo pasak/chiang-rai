@@ -1,0 +1,135 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{Label.Media}}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">
+                    <a href="/back/ProviderService/list/{{Parent.provider_ID}}">
+                    {{Label.Service}}</a>
+                </li>
+                {{#ifCond req.params.MediaParentType '==' 'rental_type'}}
+                    <li class="breadcrumb-item">
+                        <a href="/back/RentalType/list/{{req.params.ParentType}}/{{req.params.ParentID}}">
+                        {{FormControl.RentalTypeName}}</a>
+                    </li>
+                {{/ifCond}}
+                <li class="breadcrumb-item active">{{Label.Media}}</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                    {{Label.List}} {{Label.Media}} {{Label.Of}} {{MediaParent.Type}} {{MediaParent.Name}} 
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <form method="post" action="/back/Media/save" enctype="multipart/form-data">
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>{{Label.Seq}}</th>
+                    <th>{{Label.Type}}</th>
+                    <th>{{Label.File}}</th>
+                    <th>{{Label.IsActive}}</th>
+                    <th>
+  <a href="/back/Media/list/{{req.params.ParentType}}/{{req.params.ParentID}}/{{req.params.MediaParentType}}/{{req.params.MediaParentID}}/add">
+    <i class="fa fa-plus"></i> {{Label.Add}}</a> 
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+{{#ifCond req.params.MediaID '==' 'add'}}
+                  <tr>
+                    <td><input type="number" class="form-control" name="Seq" value="{{FormControl.Seq}}"></td>
+                    <td>Picture</td>
+                    <td><input type="file" name="file" required></td>
+                    <td class="text-center">
+                        <input type="checkbox" name="IsActive" value="Y" checked>
+                    </td>
+                    <td>
+                        <input type="submit" name="Action"          value="{{Label.Save}}" class="btn btn-info">
+                        <input type="hidden" name="ParentType"      value="{{req.params.ParentType}}">
+                        <input type="hidden" name="ParentID"        value="{{req.params.ParentID}}">
+                        <input type="hidden" name="MediaParentType" value="{{req.params.MediaParentType}}">
+                        <input type="hidden" name="MediaParentID"   value="{{req.params.MediaParentID}}">
+                        <input type="hidden" name="MediaID"         value="add">
+                    </td>
+                  </tr>
+{{/ifCond}}
+
+{{#each MediaList}}    
+  {{#ifCond this.Mode '==' 'View'}}                
+                  <tr>
+                    <td>{{this.Seq}}</td>
+                    <td>{{this.MediaType}}</td>
+                    <td><a href="{{this.FileName}}" target="_balnk"><img src="{{this.FileName}}" class="media-img"></a></td>
+                    <td class="text-center">
+                    {{#ifCond this.IsActive '==' 'Y'}}
+                        <i class="fa fa-check-square"></i>
+                    {{else}}
+                        <i class="fa fa-square-o"></i>
+                    {{/ifCond}}
+                    <td>
+  <a href="/back/Media/list/{{this.ParentType}}/{{this.ParentID}}/{{this.MediaParentType}}/{{this.MediaParentID}}/{{this.ID}}">
+    <i class="fa fa-edit"></i> {{this.Edit}}</a> 
+  <a href="/back/Media/delete/{{this.ParentType}}/{{this.ParentID}}/{{this.MediaParentType}}/{{this.MediaParentID}}/{{this.ID}}" 
+    onclick="return confirm('{{this.DeleteConfirm}}')">
+    <i class="fa fa-trash"></i> {{this.Delete}}</a><br> 
+                    </td>
+                  </tr>
+  {{else}}
+                  <tr>
+                    <td><input type="number" class="form-control" name="Seq" value="{{this.Seq}}"></td>
+                    <td>{{this.MediaType}}</td>
+                    <td>
+                        <a href="{{this.FileName}}" target="_balnk"><img src="{{this.FileName}}" class="media-img"></a>
+                        <br><input type="file" name="file">
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" name="IsActive" value="Y" {{#ifCond this.IsActive '==' 'Y'}}checked{{/ifCond}} >
+                    </td>
+                    <td>
+                        <input type="submit" name="Action"          value="{{this.Save}}" class="btn btn-info">
+                        <input type="hidden" name="ParentType"      value="{{this.ParentType}}">
+                        <input type="hidden" name="ParentID"        value="{{this.ParentID}}">
+                        <input type="hidden" name="MediaParentType" value="{{this.MediaParentType}}">
+                        <input type="hidden" name="MediaParentID"   value="{{this.MediaParentID}}">
+                        <input type="hidden" name="MediaID"         value="{{this.ID}}">
+                    </td>
+                  </tr>
+  {{/ifCond}}
+{{/each}} 
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

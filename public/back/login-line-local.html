@@ -1,0 +1,58 @@
+<html>
+<body>
+<div style="text-align: center; padding-top: 100px;">
+    <img src="../media/icon/line-login.png">
+</div>
+
+<div id="errormessage"></div>
+
+<form method=post action="/back/team/loginLine" id="LineForm">
+<input type=text id=LiffAppID   name=LiffAppID      style="width: 100%; margin: 10px"
+    value="1655281085-Z4jla4My"><br><!--  TRC -->
+    <!-- value="1655836928-1GKAqNno"><br> sample-rental-car -->
+<input type=text id=LineUserID  name=LineUserID     style="width: 100%; margin: 10px"
+    value="U362541332250e17aa1b0ae98dbf12483"><br>
+    <!--value="Ud77d484da913841ca14db0fe8a3ade19"><br> iPhone Ub79708c49bf3e077cd82f8cd284098fb-->
+<input type=text id=DisplayName name=DisplayName    style="width: 100%; margin: 10px"
+    value="Tee"><br>
+<input type=text id=Picture     name=Picture        style="width: 100%; margin: 10px"
+    value="https://profile.line-scdn.net/0hecvhh7ttOkxbERJtVHpEMytBOSZ4YGNeInZwLD4WYyg0JXhOdXR3eGkYMXRucnsTI3BwKWkWNn5XAk0qRUfGeFwhZHtiJX4Td3Z8rg"><br>
+<input type=text id=Email       name=Email          style="width: 100%; margin: 10px"
+    value="pasaksoftware@gmail.com"><br><br>
+<input type=text id=Page name=Page><br><br>
+<input type=text id=Latitude name=Latitude><br><br>
+<input type=text id=Longitude name=Longitude><br><br>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
+<script>
+window.onload = function (e) {
+    const debug = false; 
+
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById('Page').value = params.get('Page');
+
+    getLocation();
+
+    if (debug == false) {
+        setTimeout(function(){ 
+            document.getElementById('LineForm').submit();
+        }, 3000);                    
+    }
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        document.getElementById('errormessage').innerText = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    document.getElementById('Latitude').value = position.coords.latitude; 
+    document.getElementById('Longitude').value = position.coords.longitude;
+}
+</script>

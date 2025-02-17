@@ -1,0 +1,87 @@
+<!-- Tab -->
+<ul class="nav nav-tabs">
+    {{#if FormControl.SelfDriveActive}}
+        <a class="nav-link active tab-active" aria-current="page" 
+            href="/RC/home/SelfDrive">{{Label.SelfDrive}}</a>
+    {{/if}}
+    {{#if FormControl.IncludedDriverActive}}
+        <a class="nav-link active tab-active" aria-current="page" 
+            href="/RC/home/IncludedDriver">{{Label.IncludedDriver}}</a>
+    {{/if}}
+</ul>
+
+<!-- Module C have only 1 branch, show location -->
+{{#if FormControl.ModuleRCC}}
+    <p class="mt-3">
+    {{Label.PickUpReturnCatAT}} <i class="fa fa-map-marker"></i> 
+    <a href="{{FormControl.GoogleMapURL}}" target="_blank">{{Provider.Name}}</a>
+    </p>
+{{/if}}
+
+<form method="post" id="RC2SelectTypeForm" action="/RC/Booking" 
+      enctype="multipart/form-data">
+<div class="container-fluid border border-light my-1">
+    {{> Front/RC/RC2-1DatePicture }}
+
+    <h1 class="mt-3">{{rental_type.Name}}</h1>
+
+    {{#each FormControl.DatePriceList}}
+        <div class="rc-row">
+            <div class="rc-col-number">
+                {{this.RentalPrice4Day}} {{this.Day}} 
+            </div>
+            <div class="rc-col-number right">
+                {{!-- <span class="rc-price">{{this.PriceText}}</span>  --}}
+                {{this.PriceText}} {{this.Currency}}
+            </div>
+        </div>
+    {{/each}}
+
+    {{#ifCond FormControl.IntervalNumber '>' 1}}
+        <div class="rc-row border-top">
+            <div class="rc-col-number pt-1">
+                {{Label.TotalRentalAmount}}  
+            </div>
+            <div class="rc-col-number pt-1 right">
+                {{FormControl.RentalPriceText}} {{Provider.Currency}}
+            </div>
+        </div>
+    {{/ifCond}}
+
+    {{> Front/RC/RC2-2Option }}
+
+    {{> Front/RC/RC2-3Branch }}
+
+    {{> Front/RC/RC2-4Total }}
+
+    <!-- Need Confirm Booking -->
+    {{#ifCond Provider.RC_CONFIRM_BOOKING '==' 'Y'}}
+        <div class="rc-row border-bottom py-1">
+            <div class="col-12">
+                {{Label.NeedConfirmBooking}}  
+            </div>
+        </div>
+    {{/ifCond}}
+
+    {{> Front/RC/RC2-5Term }}
+
+    {{> Front/RC/RC2-6Customer }}
+
+    <div class="rc-row border-top pt-3">
+    {{{FormControl.Condition}}}
+    </div>
+
+    <div class="rc-row">
+        <input type="checkbox" onclick="AcceptRentalTerms()"> 
+        <font color="red">{{Label.AcceptRentalTerms}}</font>
+    </div>
+
+    <input type="submit" id="Submit" 
+        class="btn btn-primary full-width mt-3"  
+        value="{{Label.BookNow}}" disabled>
+
+</div><!-- container -->
+
+{{> Front/RC/RC2-Hidden }}
+
+{{> Front/RC/RC2-Script }}

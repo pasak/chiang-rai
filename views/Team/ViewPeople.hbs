@@ -1,0 +1,19 @@
+<div class="container-fluid my-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6 col-12 fs-3">{{Label.View}} {{Label.People}}</div>
+                <div class="col-sm-6 col-12 text-end pt-3">
+                    <a href="/back/team/people/add"><i class="fa fa-plus"></i> {{Label.Add}}</a> &nbsp; 
+                    <a href="/back/team/people/list"><i class="fa fa-list"></i> {{Label.List}}</a>
+                </div>
+            </div>
+        </div><!-- card-header -->
+        <div class="card-body">
+            {{> Back/people/PeopleField}}
+            {{> Back/people/PeopleField4}}
+        </div><!-- card-body -->
+    </div><!-- card -->
+</div><!-- container-fluid -->
+
+{{> Back/people/PeopleMapScript}}

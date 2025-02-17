@@ -1,0 +1,96 @@
+<div class="form-group row">
+    <label for="ElectionDistrictNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.ElectionDistrictNumber}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" min="0" class="form-control" id="ElectionDistrictNumber" name="ElectionDistrictNumber" value="{{People.ElectionDistrictNumber}}" placeholder="{{Label.ElectionDistrictNumber}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="PollingStationNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.PollingStationNumber}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" min="0" class="form-control" id="PollingStationNumber" name="PollingStationNumber" value="{{People.PollingStationNumber}}" placeholder="{{Label.PollingStationNumber}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="PollingStationName" class="{{FormControl.LabelClass}} col-form-label">{{Label.PollingStationName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="PollingStationName" name="PollingStationName" value="{{People.PollingStationName}}" placeholder="{{Label.PollingStationName}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="HaveVotingRights" class="{{FormControl.LabelClass}} col-form-label">{{Label.HaveVotingRights}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="checkbox" class="pt-3" id="HaveVotingRights" name="HaveVotingRights" value="Y" 
+            {{#ifCond People.HaveVotingRights '==' 'Y'}}checked{{/ifCond}}
+            {{#ifCond FormControl.Mode '==' 'View'}} readonly{{/ifCond}}>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="MemberType" class="{{FormControl.LabelClass}} col-form-label">{{Label.MemberType}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{People.MemberType}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectMemberType}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="MemberRole" class="{{FormControl.LabelClass}} col-form-label">{{Label.MemberRole}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{People.MemberRole}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectMemberRole}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Prospective" class="{{FormControl.LabelClass}} col-form-label">{{Label.Prospective}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{People.Prospective}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectProspective}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="IsActive" class="{{FormControl.LabelClass}} col-form-label">{{Label.IsActive}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="checkbox" class="pt-3" id="IsActive" name="IsActive" value="Y" 
+            {{#ifCond People.IsActive '==' 'Y'}}checked{{/ifCond}}
+            {{#ifCond FormControl.Mode '==' 'View'}} readonly{{/ifCond}}>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Remark" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.Remark}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <textarea class="form-control" id="Remark" name="Remark" placeholder="{{Label.Remark}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly {{/ifCond}}>{{People.Remark}}</textarea>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Picture" class="{{FormControl.LabelClass}} col-form-label">{{Label.Picture}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Image '!=' null}} 
+            <a href="{{FormControl.Image}}" target="_blank"><img src="{{FormControl.Image}}" height="100"></a> &nbsp; 
+        {{/ifCond}}
+        {{#ifCond FormControl.Mode '!=' 'View'}} 
+            <input type="file" name="file" class="form-control" accept="image/*, video/*" capture  onchange="CheckFileSize(this)">
+            <span id="FileSizeLimit10" class="text-danger d-none">{{Label.FileSizeLimit10}}</span>
+            <input type="hidden" id="FileSizeError" value="N">
+        {{/ifCond}}
+    </div>
+</div>

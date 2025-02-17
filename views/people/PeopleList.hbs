@@ -1,0 +1,107 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{Label.People}}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item active">{{Label.People}}</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">{{Label.List}} {{Label.People}}</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form class="form-horizontal" method="post" action="/back/people/search">
+                    <div class="form-group row">
+                        <div class="col-3">{{{FormControl.SelectField}}}</div>
+                        <div class="col-3 {{FormControl.cSearchCol}}"      id="SearchCol">{{{FormControl.SearchCol}}}</div>
+                        <div class="col-3 {{FormControl.cDistrictCol}}"    id="DistrictCol">{{{FormControl.DistrictCol}}}</div>
+                        <div class="col-3 {{FormControl.cSubDistrictCol}}" id="SubDistrictCol">{{{FormControl.SubDistrictCol}}}</div>
+                        <div class="col-6 {{FormControl.cDateCol}}"        id="DateCol">
+                          <div class="row">
+                            <label for="FromDate" class="col-2 col-form-label">{{Label.FromDate}}</label>
+                            <div class="col-4">
+                              <input type='text' class='form-control date-picker' id='FromDate' name='FromDate'    
+                                data-date-language='{{FormControl.DateLanguage}}' value='{{FormControl.FromDate}}'>  
+                            </div>
+                            <label for="ToDate" class="col-2 col-form-label">{{Label.ToDate}}</label>
+                            <div class="col-4">
+                              <input type='text' class='form-control date-picker' id='ToDate' name='ToDate'    
+                                data-date-language='{{FormControl.DateLanguage}}' value='{{FormControl.ToDate}}'>  
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                            <input type="submit" id="Action" name="Action" class="btn btn-info" value="{{Label.Search}}" {{FormControl.dSearch}}> &nbsp; 
+                            <input type="submit" id="Action" name="Action" class="btn btn-primary" value="CSV">
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>{{Label.ID}}</th>
+                    <th>{{Label.FirstName}}</th>
+                    <th>{{Label.LastName}}</th>
+                    <th>Line User ID</th>
+                    <th>{{Label.IsActive}}</th>
+                    <th><a href="/back/people/edit/add"><i class="fa fa-plus"></i> {{Label.Add}}</a></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+{{#each PeopleList}}                    
+                  <tr>
+                    <td>{{this.ID}}</td>
+                    <td>{{this.FirstName}}</td>
+                    <td>{{this.LastName}}</td>
+                    <td>{{this.LineUserID}}...</td>
+                    <td class="text-center">
+                    {{#ifCond this.IsActive '==' 'Y'}}<i class="fa fa-check-square"></i>
+                    {{else}}<i class="fa fa-square-o"></i>
+                    {{/ifCond}}
+                    </td>
+                    <td>
+                      <a href="/back/people/edit/{{this.ID}}"><i class="fa fa-edit"></i> {{this.Edit}}</a>&nbsp; 
+                    </td>
+                  </tr>
+{{/each}}                  
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+<input type="hidden" id="BACKEND_URL"     value="{{FormControl.BACKEND_URL}}">
+<input type="hidden" id="Language"        value="{{FormControl.Language}}">
+<input type="hidden" id="EnterSearchTerm" value="{{Label.EnterSearchTerm}}">
+
+{{> Back/people/ListPeopleScript}}

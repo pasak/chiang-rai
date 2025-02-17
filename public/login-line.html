@@ -1,0 +1,84 @@
+<html>
+<body>
+<div style="text-align: center; padding-top: 100px;">
+    <img src="media/icon/line-login.png">
+</div>
+<form method=post action="/customer/login-line" id="LineForm">
+<input type=hidden id=LiffAppID name=LiffAppID><br>
+<input type=hidden id=LineUserID name=LineUserID><br>
+<input type=hidden id=DisplayName name=DisplayName><br>
+<input type=hidden id=Picture name=Picture style="width: 100%; margin: 10px"><br>
+<input type=hidden id=Email name=Email><br><br>
+<input type=hidden value="Submit">
+</form>
+<span id=Action></span>
+</body>
+</html>
+<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+<script>
+window.onload = function (e) {
+    const debug = false; 
+
+    const params = new URLSearchParams(window.location.search);
+
+    const LiffAppID = params.get('LiffAppID');
+
+    liff.init({ liffId: LiffAppID }, () => { 
+        // alert('liff.init');
+
+        if (liff.isLoggedIn()) {
+            // alert('liff.isLoggedIn');
+
+            liff.getProfile().then(profile => {
+                // alert('liff.getProfile');
+                document.getElementById('LiffAppID').value = LiffAppID;
+                document.getElementById('LineUserID').value = profile.userId;
+                document.getElementById('DisplayName').value = profile.displayName;
+                document.getElementById('Picture').value = profile.pictureUrl;
+                document.getElementById('Email').value = liff.getDecodedIDToken().email;
+
+                // if ($('#Latitude').val() != '' && $('#Longitude').val() != '') {
+                    // alert('submit');
+/*
+                let PictureURL = profile.pictureUrl.replace(
+                'https://profile.line-scdn.net/','');
+
+                var href = 
+                "/customer/login-line/" + LiffAppID + 
+                "/" + document.getElementById('LineUserID').value + 
+                "/" + encodeURI(profile.displayName) + 
+                "/" + PictureURL 
+                // +"/" + liff.getDecodedIDToken().email;
+/*
+fetch('/customer/login-line', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 
+        "LiffAppID":    LiffAppID,
+        "LineUserID":   profile.userId,
+        "DisplayName":  encodeURI(profile.displayName),
+        "Picture":      profile.pictureUrl, 
+        'Email':        liff.getDecodedIDToken().email 
+        Email
+    })
+})
+   .then(response => response.json())
+   .then(response => console.log(JSON.stringify(response)))/
+*/
+                if (debug == false) {
+                    setTimeout(function(){ 
+                        document.getElementById('LineForm').submit();
+                    }, 3000);                    
+                }
+
+            }).catch(
+            err => console.error(err));
+        } else {
+            liff.login();
+        }
+    }, err => console.error(err.code, error.message));
+};
+</script>

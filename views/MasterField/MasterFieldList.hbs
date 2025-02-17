@@ -1,0 +1,111 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{Label.MasterField}}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item active">{{Label.MasterField}}</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">{{Label.List}} {{Label.MasterField}}</h3>
+              </div>
+              <!-- /.card-header -->
+              <form class="form-horizontal" method="post" action="/back/MasterField/save">
+              <div class="card-body">
+                <div class="form-group row">
+                    <label for="FieldName" class="{{FormControl.LabelClass}} col-form-label">{{Label.FieldName}}</label>
+                    <div class="col-3">{{{FormControl.SelectFieldName}}}</div>
+                    <div class="col-3">
+                        <input type="submit" class="btn btn-primary" name="Action" value="{{Label.Search}}">
+                    </div>
+                </div><!-- row -->
+
+{{#ifCond req.params.FieldName '!=' null}}
+                <table class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>{{Label.Choice}}</th>
+                    <th class="text-center">{{Label.IsActive}}</th>
+                    <th><a href="/back/MasterField/list/{{req.params.FieldName}}/add"><i class="fa fa-plus"></i> {{Label.Add}}</a> 
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+    {{#each MasterFieldList}}    
+        {{#ifCond this.Mode '==' 'View'}}                
+                  <tr>
+                    <td>{{this.Value}}</td>
+                    <td class="text-center">
+                    {{#ifCond this.IsActive '==' 'Y'}}
+                        <i class="fa fa-check-square"></i>
+                    {{else}}
+                        <i class="fa fa-square-o"></i>
+                    {{/ifCond}}
+                    <td>
+            <a href="/back/MasterField/list/{{this.FieldName}}/{{this.ID}}">
+                <i class="fa fa-edit"></i> {{this.Edit}}</a> &nbsp; 
+            <a href="/back/MasterField/delete/{{this.FieldName}}/{{this.ID}}" 
+                onclick="return confirm('{{this.DeleteConfirm}}')">
+                <i class="fa fa-trash"></i> {{this.Delete}}</a> 
+                    </td>
+                  </tr>
+        {{else}}
+                  <tr>
+                    <td><input type="text" class="form-control" name="Value" value="{{this.Value}}" required></td>
+                    <td class="text-center">
+                        <input type="checkbox" name="IsActive" value="Y" {{#ifCond this.IsActive '==' 'Y'}}checked{{/ifCond}} >
+                    </td>
+                    <td>
+                        <input type="submit" name="Action"          value="{{this.Save}}" class="btn btn-info">
+                        <input type="hidden" name="MasterFieldID"   value="{{this.ID}}">
+                    </td>
+                  </tr>
+        {{/ifCond}}
+    {{/each}} 
+
+    {{#ifCond req.params.MasterFieldID '==' 'add'}}
+                    <td><input type="text" class="form-control" name="Value" required></td>
+                    <td class="text-center">
+                        <input type="checkbox" name="IsActive" value="Y" checked>
+                    </td>
+                    <td>
+                        <input type="submit" name="Action"          value="{{Label.Save}}" class="btn btn-success">
+                        <input type="hidden" name="MasterFieldID"   value="add">
+                    </td>
+                  </tr>
+    {{/ifCond}}
+                  </tbody>
+                </table>
+{{/ifCond}}
+              </div>
+              <!-- /.card-body -->
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

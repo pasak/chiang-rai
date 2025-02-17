@@ -1,0 +1,27 @@
+.media-img {
+    height: 100px;
+}
+
+.document-code-seq {
+    width: 50px; 
+    padding-left: 10px;
+    margin: 0 10px;
+}
+
+.document-code-value {
+    width: 100px; 
+    padding-left: 10px;
+    margin: 0 10px;
+}
+
+.document-code-seperator {
+    width: 30px; 
+    padding-left: 10px;
+    margin: 0 10px;
+}
+
+.document-code-select {
+    width: 120px; 
+    padding: 0 10px;
+    margin-right: 10px;
+}

@@ -1,0 +1,111 @@
+<form method="post" id="HR1HomeForm" action="/HR/SelectType">
+<div class="container-fluid border border-light my-1">
+    <!-- Date Box -->
+    <div class="row mt-1 mb-3 p-2 rc-date-box">
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-7 col-sm-7 col-7">
+                    {{Label.CheckInDate}} <br>
+                    <input 
+                        class='date-picker my-1' type='text' 
+                        data-provide='datepicker' 
+                        data-date-language='{{FormControl.DateLanguage}}' 
+                        id="PickUpDate" name='PickUpDate' 
+                        value='{{FormControl.PickUpDate}}' 
+                        onchange="changeDate()" 
+                    >
+                </div>
+                
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-sm-7 col-7">
+                    {{Label.CheckOutDate}} <br>
+                    <input 
+                        class='date-picker my-1' type='text' 
+                        data-provide='datepicker' 
+                        data-date-language='{{FormControl.DateLanguage}}' 
+                        id="ReturnDate" name='ReturnDate' 
+                        value='{{FormControl.ReturnDate}}' 
+                        onchange="changeReturnDate(this.value)"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="rc-number-side me-2 d-none" id="rc-num-minus">
+                <i class="fa fa-minus" onclick="changeIntervalNumber(-1)"></i>
+            </div>
+            <div class="rc-number" id="rc-num-day">
+                {{Provider.HR_MIN_RENT_INTERVAL_NUMBER}} 
+            </div>
+            <div class="{{FormControl.RENT_INTERVAL_TYPE_class}} ms-2">
+                {{{FormControl.RENT_INTERVAL_TYPE}}}
+            </div>
+            <div class="rc-number-side ms-2" id="rc-num-plus">
+                <i class="fa fa-plus" onclick="changeIntervalNumber(1)"></i>
+            </div>
+        </div>
+    </div>
+    <!-- Error Alert -->
+    <div class="alert alert-danger alert-dismissible d-none align-items-center fade"
+        id="AlertMinimumRentInterval" >
+        <i class="fa fa-exclamation-circle"></i>
+        <strong class="mx-2">Error!</strong> 
+        {{Label.MinimumRentInterval}} 
+        {{Provider.HR_MIN_RENT_INTERVAL_NUMBER}} 
+        {{FormControl.RENT_INTERVAL_TYPE}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <!-- Type List -->
+    {{#each TypeList}}
+    <div class="card rc-card">
+        <img src="{{this.FileName}}" class="card-img-top" alt="{{this.Name}}">
+        <div class="card-body">
+            <h1 class="card-title">{{this.Name}}</h1>
+            <div class="rc-row">
+                <div class="rc-col">
+                    {{#each this.Attribute}}
+                        <img src="{{this.Icon}}"> {{this.Value}}
+                    {{/each}}
+                </div>
+                <div class="rc-col right" id="PriceForText{{this.ID}}">
+                    {{this.PriceForText}} 
+                </div>
+            </div>
+            <div class="rc-row mb-2">
+                <div class="rc-col-number deposit" id="DepositText{{this.ID}}">
+                    {{this.DepositText}} 
+                </div>
+                <div class="rc-col-number right">
+                    <span class="rc-price" id="PriceText{{this.ID}}">{{this.PriceText}}</span> {{this.Currency}}
+                </div>
+            </div>
+
+            <button class="btn btn-primary full-width mt-3" 
+                    onclick="selectType({{this.ID}})">
+                    {{this.SeeDetails}}</button>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<!-- Hidden Field -->
+<input type="hidden" id="rental_type_ID"    name="rental_type_ID">
+
+<input type="hidden" id="IntervalType"      name="IntervalType"    value="{{Provider.HR_MIN_RENT_INTERVAL_TYPE}}">
+<input type="hidden" id="IntervalNumber"    name="IntervalNumber"  value="{{Provider.HR_MIN_RENT_INTERVAL_NUMBER}}">
+
+<input type="hidden" id="MinIntervalType"   value="{{Provider.HR_MIN_RENT_INTERVAL_TYPE}}">
+<input type="hidden" id="MinIntervalNumber" value="{{Provider.HR_MIN_RENT_INTERVAL_NUMBER}}">
+
+<input type="hidden" id="MaxIntervalType"   value="{{Provider.HR_MAX_RENT_INTERVAL_TYPE}}">
+<input type="hidden" id="MaxIntervalNumber" value="{{Provider.HR_MAX_RENT_INTERVAL_NUMBER}}">
+
+<input type="hidden" id="Language"          value="{{Provider.Language}}"> 
+<input type="hidden" id="pPickUpDate"       value="{{FormControl.PickUpDate}}"> 
+<input type="hidden" id="pReturnDate"       value="{{FormControl.ReturnDate}}"> 
+
+<input type="hidden" id="ProviderServiceID" value="{{Provider.ProviderServiceID}}"> 
+<input type="hidden" id="Currency"          value="{{Provider.Currency}}"> 
+<input type="hidden" id="BACKEND_URL"       value="{{FormControl.BACKEND_URL}}"> 
+<input type="hidden" id="RentType"           value="{{FormControl.RentType}}"> 
+</form>
+
+{{> Front/HR/HR1-Script }}

@@ -1,0 +1,36 @@
+<div class="container-fluid border border-light my-1">
+    <div class="row my-1 p-2">
+        {{Label.PROC_ORDER_1}}
+    </div>
+    <div class="row my-1 p-2">
+        {{Label.RentalOrderCode}} 
+        <h3 class="text-info">{{RentalOrder.Code}}</h3>
+    </div>
+    <div class="row my-1 p-2">
+        {{Label.Status}}
+        <h4 class="text-primary">{{FormControl.Status}}</h4>
+    </div>
+    <div class="row my-1 p-2">
+        {{FormControl.Please}}
+    </div>
+    <div class="row my-3 p-2">
+        {{Label.PROC_ORDER_2}}
+    </div>
+    <div class="row my-1 p-2 text-center" id="cancel-row">
+        <button class="btn btn-lg btn-warning" onclick="showConfirmRow()">
+            {{Label.Cancel}}
+        </button>
+    </div>
+    <div class="row my-1 p-2 text-center d-none" id="confirm-row">
+        <a href="/RC/CancelOrder/{{RentalOrder.ID}}" class="btn btn-lg btn-danger">
+            {{Label.ConfirmCancel}}
+        </a>
+    </div>
+</div>
+
+<script>
+function showConfirmRow() {
+    document.getElementById("cancel-row").classList.add("d-none");
+    document.getElementById("confirm-row").classList.remove("d-none");
+}
+</script>

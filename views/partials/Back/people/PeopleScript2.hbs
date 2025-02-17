@@ -1,0 +1,122 @@
+<script>
+const district_ID = document.getElementById("district_ID");
+
+district_ID.addEventListener("change", (event) => {
+    //alert('change district_ID');
+
+    jchangeDistrict();
+});
+
+function jchangeDistrict() {
+    //alert('jchangeDistrict')
+
+    var PostalCode = document.getElementById("PostalCode").value;
+
+    if (PostalCode.length == 0) { PostalCode = '0';}
+
+    var URL = document.getElementById("BACKEND_URL").value +
+        'team/api/changeDistrict/' + 
+        document.getElementById("district_ID").value +'/'+ PostalCode; 
+
+    //document.getElementById("Debug").innerText = URL;
+
+    fetch(URL)
+    .then( function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code:' +
+            response.status);
+            return;
+        }
+
+        // Examine the text in the response
+        response.json().then(function(html) {
+            document.getElementById("SelectSubDistrict").innerHTML = html.SelectSubDistrict;
+        });
+    })
+    .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+    });    
+} // jchangeDistrict
+
+
+const province_ID = document.getElementById("province_ID");
+
+province_ID.addEventListener("change", (event) => {
+    //alert('change province_ID');
+
+    jchangeProvince();
+});
+
+function jchangeProvince() {
+    //alert('jchangeProvince')
+
+    var PostalCode = document.getElementById("PostalCode").value;
+
+    if (PostalCode.length == 0) { PostalCode = '0';}
+
+    var URL = document.getElementById("BACKEND_URL").value +
+        'team/api/changeProvince/' + 
+        document.getElementById("province_ID").value +'/'+ PostalCode; 
+
+    //document.getElementById("Debug").innerText = URL;
+
+    fetch(URL)
+    .then( function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code:' +
+            response.status);
+            return;
+        }
+
+        // Examine the text in the response
+        response.json().then(function(html) {
+            document.getElementById("SelectDistrict").innerHTML = html.SelectDistrict;
+            document.getElementById("SelectSubDistrict").innerHTML = html.SelectSubDistrict;
+        });
+    })
+    .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+    });    
+} // changeProvince
+
+
+const PostalCode = document.getElementById("PostalCode");
+
+PostalCode.addEventListener("keyup", (event) => {
+    jkeyPostalCode();
+});
+
+function jkeyPostalCode() {
+    //alert('jkeyPostalCode')
+    
+    var PostalCode = document.getElementById("PostalCode").value;
+
+    if (PostalCode.length == 5 || PostalCode.length == 0) {
+        if (PostalCode.length == 0) { PostalCode = '0'; }
+
+        var URL = document.getElementById("BACKEND_URL").value + 'team/api/keyPostalCode/' + PostalCode; 
+
+        //document.getElementById("Debug").innerText = URL;
+
+        fetch(URL)
+        .then( function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code:' +
+                response.status);
+                return;
+            }
+
+            // Examine the text in the response
+            response.json().then(function(html) {
+                document.getElementById("SelectProvince").innerHTML = html.SelectProvince;
+                document.getElementById("SelectDistrict").innerHTML = html.SelectDistrict;
+                document.getElementById("SelectSubDistrict").innerHTML = html.SelectSubDistrict;
+            });
+        })
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });    
+    }
+} // keyPostalCode
+
+</script>

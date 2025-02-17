@@ -1,0 +1,82 @@
+<div class="form-group row">
+    <label for="PostalCode" class="{{FormControl.LabelClass}} col-form-label">{{Label.PostalCode}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{People.PostalCode}}" readonly>
+        {{else}} 
+            <input type="text" minlength="5" maxlength="5" class="form-control" 
+                id="PostalCode" name="PostalCode" value="{{People.PostalCode}}" 
+                placeholder="{{Label.PostalCode}}" onkeyup="keyPostalCode()">
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="province_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.Province}}</label>
+    <div class="{{FormControl.InputClass}}" id="SelectProvince">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{People.Province}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectProvince}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="district_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.District}}</label>
+    <div class="{{FormControl.InputClass}}" id="SelectDistrict">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{People.District}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectDistrict}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="sub_district_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.SubDistrict}}</label>
+    <div class="{{FormControl.InputClass}}" id="SelectSubDistrict">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{People.SubDistrict}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectSubDistrict}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Address" class="{{FormControl.LabelClass}} col-form-label">{{Label.Address}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Address" name="Address" value="{{People.Address}}" placeholder="{{Label.Address}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Road" class="{{FormControl.LabelClass}} col-form-label">{{Label.Road}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Road" name="Road" value="{{People.Road}}" placeholder="{{Label.Road}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Village" class="{{FormControl.LabelClass}} col-form-label">{{Label.Village}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Village" name="Village" value="{{People.Village}}" placeholder="{{Label.Village}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="BirthDate" class="{{FormControl.LabelClass}} col-form-label">{{Label.BirthDate}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{People.BirthDate}}" readonly>
+        {{else}} 
+            <input type="text" class="form-control date-picker" id="BirthDate" name="BirthDate"   
+            data-date-language='{{FormControl.DateLanguage}}' value="{{People.BirthDate}}" required> 
+        {{/ifCond}}
+    </div>
+</div>
+

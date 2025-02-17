@@ -1,0 +1,50 @@
+<div class="container-fluid my-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6 col-12 fs-3">{{Label.Add}} {{List.People}}</div>
+                <div class="col-sm-6 col-12 text-end pt-3">
+                    <a href="/back/team/people/add"><i class="fa fa-plus"></i> {{Label.Add}}</a> &nbsp; 
+                    <a href="/back/team/people/list"><i class="fa fa-list"></i> {{Label.List}}</a> &nbsp;
+                    <a href="/back/team/people/search"><i class="fa fa-search"></i> {{Label.Search}}</a> &nbsp;
+                </div>
+            </div>
+        </div><!-- card-header -->
+        <div class="card-body">
+        <form class="form-horizontal" method="post" action="/back/team/people/search">
+            <div class="form-group row">
+                <label for="Title" class="{{FormControl.LabelClass}} col-form-label">{{{SelectField}}}</label>
+                <div class="{{FormControl.InputClass}}">
+                    <input type="text" class="form-control" id="Value" name="Value" value="{{People.Title}}" placeholder="{{Label.Title}}" 
+                    {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} required> {{/ifCond}}
+                </div>
+            </div>
+
+        </form>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>{{Label.FirstName}}</th>
+                <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each PeopleList}}                    
+                <tr>
+                <td>{{this.ID}}</td>
+                <td>{{this.FirstName}}</td>
+                <td>
+                    <a href="/back/team/people/view/{{this.ID}}"><i class="fa fa-search"></i> {{this.View}}</a> &nbsp; 
+                    <a href="/back/team/people/edit/{{this.ID}}"><i class="fa fa-edit"></i> {{this.Edit}}</a> 
+                </td>
+                </tr>
+            {{/each}}                  
+            </tbody>
+        </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div><!-- container-fluid -->

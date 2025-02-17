@@ -1,0 +1,76 @@
+/* XXL */
+@media (min-width: 1400px) { 
+	#XXL {
+		display: inline-block;
+	}
+	#XL, #LG, #MD, #SM, #XS {
+		display: none;
+	}
+}
+
+/* XL */
+@media (min-width: 1200px) and (max-width: 1400px) { 
+	#XL {
+		display: inline-block;
+	}
+	#XXL, #LG, #MD, #SM, #XS {
+		display: none;
+	}
+}
+
+/* LG */
+@media (min-width: 992px) and (max-width: 1200px) { 
+	#LG {
+		display: inline-block;
+	}
+	#XXL, #XL, #MD, #SM, #XS {
+		display: none;
+	}
+}
+
+/* md desktop */
+@media (min-width: 768px) and (max-width: 992px){ 
+	#MD {
+		display: inline-block;
+	}
+	#XXL, #XL, #LG, #SM, #XS {
+		display: none;
+	}
+}
+
+/* sm tablet */
+@media (min-width: 576px) and (max-width: 768px){ 
+	#SM {
+		display: inline-block;
+	}
+	#XXL, #XL, #LG, #MD, #XS {
+		display: none;
+	}
+}
+
+/* xs large phone */
+/* xs small phone */
+@media (min-width: 20px) and (max-width: 576px){ 
+	#XS {
+		display: inline-block;
+	}
+	#XXL, #XL, #LG, #MD, #SM {
+		display: none;
+	}
+
+	.rc-col {
+		width: 100%;
+	}
+	
+	.rc-col.right {
+		padding-top: 10px;
+	}
+
+	.option-name {
+		width: calc(98% - 20px);
+	}
+	
+	.option-price {
+		width: 100%;
+	}
+}

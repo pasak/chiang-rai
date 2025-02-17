@@ -1,0 +1,77 @@
+<html>
+<body>
+<div style="text-align: center; padding-top: 100px;">
+    <img src="/media/icon/line-login.png">
+</div>
+
+<div id="errormessage"></div>
+
+<form method=post action="/back/team/loginLine" id="LineForm">
+<input type=text id=LiffAppID name=LiffAppID><br>
+<input type=text id=LineUserID name=LineUserID><br>
+<input type=text id=DisplayName name=DisplayName><br>
+<input type=text id=Picture name=Picture style="width: 100%; margin: 10px"><br>
+<input type=text id=Email name=Email><br>
+<input type=text id=Page name=Page><br><br>
+<input type=text id=Latitude name=Latitude><br><br>
+<input type=text id=Longitude name=Longitude><br><br>
+<input type=submit value="Submit">
+</form>
+<span id=Action></span>
+</body>
+</html>
+<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+<script>
+window.onload = function (e) {
+    const debug = false; 
+
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById('Page').value = params.get('Page');
+
+    getLocation();
+
+    const LiffAppID = (params.get('Page') == 'people') ? '1653771216-7EByBleG' : 
+                      (params.get('Page') == 'operation') ? '1653771216-lzdmdvaW' : '1653771216-oE0a0j9y'
+
+    liff.init({ liffId: LiffAppID }, () => { 
+        // alert('liff.init');
+
+        if (liff.isLoggedIn()) {
+            // alert('liff.isLoggedIn');
+
+            liff.getProfile().then(profile => {
+                // alert('liff.getProfile');
+                document.getElementById('LiffAppID').value = LiffAppID;
+                document.getElementById('LineUserID').value = profile.userId;
+                document.getElementById('DisplayName').value = profile.displayName;
+                document.getElementById('Picture').value = profile.pictureUrl;
+                document.getElementById('Email').value = liff.getDecodedIDToken().email;
+
+                if (debug == false) {
+                    setTimeout(function(){ 
+                        document.getElementById('LineForm').submit();
+                    }, 3000);                    
+                }
+
+            }).catch(
+            err => console.error(err));
+        } else {
+            liff.login();
+        }
+    }, err => console.error(err.code, error.message));
+};
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        document.getElementById('errormessage').innerText = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    document.getElementById('Latitude').value = position.coords.latitude; 
+    document.getElementById('Longitude').value = position.coords.longitude;
+}
+</script>

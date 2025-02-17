@@ -1,0 +1,58 @@
+<div class="container-fluid border border-light my-1">
+
+{{#if FormControl.ChillPay}}
+    <div class="card">
+        <div class="card-header">
+           <h4>{{Label.ChillPay}}</h4>
+        </div>
+        <div class="card-body">
+            <div class="rc-row mt-3">
+                <a href="https://www.chillpay.co/Home/OurChannel" target="_blank">{{Label.ChillPayMore}}</a>
+            </div>
+            {{#ifCond FormControl.ChillPayAmount '!=' ''}}
+                <div class="rc-row mt-3">
+                    {{{FormControl.ChillPayAmount}}}
+                </div>
+            {{/ifCond}}
+            <div class="rc-row mt-3">
+                <a href="/RC/ChillPay/{{RentalOrder.ID}}" class="btn btn-lg btn-success">{{Label.PayOnline}}</a>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
+{{#if FormControl.MoneyTransfer}}
+    <div class="card">
+        <div class="card-header">
+           <h4>{{Label.MoneyTransfer}}</h4>
+        </div>
+        <div class="card-body">
+            {{#ifCond FormControl.MT_DESC '!=' null}}
+                <div class="rc-row mt-3">
+                    {{{FormControl.MT_DESC}}}
+                </div>
+            {{/ifCond}}
+            {{#ifCond FormControl.MT_DESC '!=' null}}
+                <div class="rc-row mt-3">
+                    <img class="w-100" src="{{FormControl.MT_MEDIA}}">
+                </div>
+            {{/ifCond}}
+            {{#ifCond FormControl.MoneyTransferAmount '!=' ''}}
+                <div class="rc-row mt-3">
+                    {{{FormControl.MoneyTransferAmount}}}
+                </div>
+            {{/ifCond}}
+
+            <form method="post" action="/back/rental/informPayment" enctype="multipart/form-data">
+                <div class="rc-row mt-3">
+                    {{Label.MTPicture}} <input type="file" name="MT" required>
+                </div>
+                <div class="rc-row mt-3">
+                    <button class="btn btn-lg btn-success">{{Label.RC_InformPayment}}</button>
+                </div>
+
+                <input type="hidden" name="RentalOrderID" value="{{RentalOrder.ID}}">
+            </form>
+        </div>
+    </div>
+{{/if}}

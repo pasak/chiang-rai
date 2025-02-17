@@ -1,0 +1,68 @@
+<div class="form-group row">
+    <label for="UserName" class="{{FormControl.LabelClass}} col-form-label">{{Label.UserName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="UserName" name="UserName" value="{{user.UserName}}" 
+            placeholder="{{Label.UserName}}" onchange="CheckUserName('{{user.UserName}}',this.value)">
+        <span id="UserNameMustUnique" class="text-danger d-none"><br>{{Label.UserNameMustUnique}}</span>
+        <span id="UserNameMustNotSpaces" class="text-danger d-none"><br>{{Label.UserNameMustNotSpaces}}</span>
+        <span id="UserNameMustAlphanumeric" class="text-danger d-none"><br>{{Label.UserNameMustAlphanumeric}}</span>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Password" class="{{FormControl.LabelClass}} col-form-label">{{Label.Password}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Password" name="Password" placeholder="{{Label.Password}}">
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="ConfirmPassword" class="{{FormControl.LabelClass}} col-form-label">{{Label.ConfirmPassword}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="ConfirmPassword" placeholder="{{Label.ConfirmPassword}}"  
+            onchange="CheckPassword()">
+        <span id="PasswordNotMatch" class="text-danger d-none"><br>{{Label.PasswordNotMatch}}</span>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Role" class="{{FormControl.LabelClass}} col-form-label">{{Label.Role}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <select class="form-control" name="Role" required>
+            <option value="TeamMember"  {{#ifCond user.Role '==' 'TeamMember' }} selected{{/ifCond}}>{{Label.TeamMember}}</option>
+            <option value="TeamLeader"  {{#ifCond user.Role '==' 'TeamLeader' }} selected{{/ifCond}}>{{Label.TeamLeader}}</option>
+            <option value="Admin"       {{#ifCond user.Role '==' 'Admin'      }} selected{{/ifCond}}>{{Label.Admin}}</option>
+        </select>
+    </div>
+</div>
+
+<!--div class="form-group row">
+    <label for="Language" class="{{FormControl.LabelClass}} col-form-label">{{Label.Language}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <select class="form-control" name="Language" required>
+            <option value="th" {{#ifCond user.Language '==' 'th'}} selected{{/ifCond}}>{{Label.Thai}}</option>
+            <option value="en" {{#ifCond user.Language '==' 'en'}} selected{{/ifCond}}>{{Label.English}}</option>
+            <option value="zh" {{#ifCond user.Language '==' 'zh'}} selected{{/ifCond}}>{{Label.Chinese}}</option>
+        </select>
+    </div>
+</!div-->
+
+<div class="form-group row">
+    <label for="Picture" class="{{FormControl.LabelClass}} col-form-label">{{Label.Picture}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Image '!=' null}} 
+        <a href="{{FormControl.Image}}" target="_blank"><img src="{{FormControl.Image}}" height="100"></a> &nbsp; 
+        {{/ifCond}}
+        <input type="file" name="file" class="form-control" onchange="CheckFileSize(this)">
+        <span id="FileSizeLimit10" class="text-danger d-none">{{Label.FileSizeLimit10}}</span>
+        <input type="hidden" id="FileSizeError" value="N">
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Title" class="{{FormControl.LabelClass}} col-form-label">{{Label.Title}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Title" name="Title" value="{{user.Title}}" placeholder="{{Label.Title}}" required>
+    </div>
+</div>
+

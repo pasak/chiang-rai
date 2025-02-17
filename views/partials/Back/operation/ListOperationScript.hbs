@@ -1,0 +1,95 @@
+<script>
+function SelectField() {
+    //alert('SelectField '+$('#Field').val())
+
+    if ($('#Field').val() == 'Province') {
+        var URL = $('#BACKEND_URL').val() + 'people/api/SelectFieldProvince/' + $('#Language').val();
+
+        //alert(URL)
+
+        fetch(URL)
+        .then( function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code:' +
+                response.status);
+                return;
+            }
+
+            // Examine the text in the response
+            response.json().then(function(html) {
+                $('#SearchCol').html(html.SelectProvince);
+                $('#Action').removeAttr("disabled");
+
+                if ($('#SearchCol').hasClass('d-none')) {
+                    $('#SearchCol').removeClass('d-none');
+                    $('#DateCol').addClass('d-none'); 
+                }
+            });
+        })
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });    
+
+    } else if ($('#Field').val() == 'Status' || $('#Field').val() == 'Type') {
+        var URL = $('#BACKEND_URL').val() + 'operation/api/SelectMasterField/' + $('#Field').val();
+
+        //alert(URL)
+
+        fetch(URL)
+        .then( function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code:' +
+                response.status);
+                return;
+            }
+
+            // Examine the text in the response
+            response.text().then(function(html) {
+                $('#SearchCol').html(html);
+                $('#Action').removeAttr("disabled");
+
+                if ($('#SearchCol').hasClass('d-none')) {
+                    $('#SearchCol').removeClass('d-none');
+                    $('#DateCol').addClass('d-none'); 
+                }
+            });
+        })
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });    
+
+    } else if ($('#Field').val() == 'Date' || $('#Field').val() == 'CreatedDate') {
+        $('#SearchCol').addClass('d-none'); 
+        $('#DateCol').removeClass('d-none'); 
+        $('#Action').removeAttr("disabled");
+
+    } else {
+        let html = 
+        "<input type='text' class='form-control' id='SearchTerm' name='SearchTerm' " + 
+        "placeholder='" + $('#EnterSearchTerm').val() + "' onkeyup='KeySearchTerm()'> " + 
+        "<input type=hidden name=province_ID value=''>"
+
+        $('#SearchCol').html(html);
+
+        if ($('#SearchCol').hasClass('d-none')) {
+            $('#SearchCol').removeClass('d-none');
+            $('#DateCol').addClass('d-none'); 
+        }
+
+        if ($('#Field').val() != '' && $('#SearchTerm').val() != '') {
+            $('#Action').removeAttr("disabled");
+        } else if (!$('#Action').prop('disabled')) {
+            $('#Action').attr("disabled", true);
+        }
+    }
+} // SelectField
+
+function KeySearchTerm() {
+    if ($('#Field').val() != '' && $('#SearchTerm').val() != '') {
+        $('#Action').removeAttr("disabled");
+    } else if (!$('#Action').prop('disabled')) {
+        $('#Action').attr("disabled", true);
+    }
+} // KeySearchTerm
+
+</script>

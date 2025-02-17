@@ -1,0 +1,65 @@
+<form method="post" id="HR2SelectTypeForm" action="/HR/Booking" 
+      enctype="multipart/form-data">
+<div class="container-fluid border border-light my-1">
+    {{> Front/HR/HR2-1DatePicture }}
+
+    <h1 class="mt-3">{{rental_type.Name}}</h1>
+
+    {{#each FormControl.DatePriceList}}
+        <div class="rc-row">
+            <div class="rc-col-number">
+                {{this.RoomChargeDay}} {{this.Day}} 
+            </div>
+            <div class="rc-col-number right">
+                {{!-- <span class="rc-price">{{this.PriceText}}</span>  --}}
+                {{this.PriceText}} {{this.Currency}}
+            </div>
+        </div>
+    {{/each}}
+
+    {{#ifCond FormControl.IntervalNumber '>' 1}}
+        <div class="rc-row border-top">
+            <div class="rc-col-number pt-1">
+                {{Label.TotalRoomCharge}}  
+            </div>
+            <div class="rc-col-number pt-1 right">
+                {{FormControl.RentalPriceText}} {{Provider.Currency}}
+            </div>
+        </div>
+    {{/ifCond}}
+
+    {{> Front/HR/HR2-2Option }}
+
+    {{> Front/HR/HR2-3Branch }}
+
+    {{> Front/HR/HR2-4Total }}
+
+    <!-- Need Confirm Booking -->
+    {{#ifCond Provider.HR_CONFIRM_BOOKING '==' 'Y'}}
+        <div class="rc-row border-bottom py-1">
+            <div class="col-12">
+                {{Label.NeedConfirmBooking}}  
+            </div>
+        </div>
+    {{/ifCond}}
+
+    {{> Front/HR/HR2-5Term }}
+
+    {{> Front/HR/HR2-6Customer }}
+
+    <div class="rc-row border-top pt-3">
+    {{{FormControl.Condition}}}
+    </div>
+
+    <div class="rc-row">
+        <input type="checkbox" onclick="AcceptRentalTerms()"> 
+        <font color="red">{{Label.AcceptTerms}}</font>
+    </div>
+
+    <input type="submit" id="Submit" class="btn btn-primary full-width mt-3" value="{{Label.BookNow}}" disabled>
+
+</div><!-- container -->
+
+{{> Front/HR/HR2-Hidden }}
+
+{{> Front/HR/HR2-Script }}

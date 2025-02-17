@@ -1,0 +1,63 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{Label.Team}}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item">
+                  <a href="/back/user/list">{{Label.Team}}</a>
+              </li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                    {{#ifCond user.ID '==' 'add'}} {{Label.Add}} 
+                    {{else}} {{Label.Edit}} {{/ifCond}}
+                    {{Label.Team}} 
+                </h3>
+              </div>
+              <!-- /.card-header -->
+                <form class="form-horizontal" method="post" action="/back/user/save" enctype="multipart/form-data">
+              <div class="card-body">
+              {{> Back/user/UserField1}}
+              {{> Back/user/UserField2}}
+              </div>
+              <!-- /.card-body -->
+                <div class="card-footer">
+                    <input type="submit" id="Submit" class="btn btn-info" value="{{Label.Save}}">
+                    <button type="reset"  class="btn btn-default float-right">{{Label.Cancel}}</button>
+                </div>
+                <!-- /.card-footer -->
+
+                <input type="hidden" name="UserID"      value="{{user.ID}}">
+                <input type="hidden" id="BACKEND_URL"   value="{{FormControl.BACKEND_URL}}">
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{{> Back/user/UserScript}}

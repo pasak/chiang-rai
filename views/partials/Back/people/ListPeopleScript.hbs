@@ -1,0 +1,134 @@
+<script>
+function SelectField() {
+    if ($('#Field').val() == 'Province') {
+        var URL = $('#BACKEND_URL').val() + 'people/api/SelectFieldProvince/th';
+
+        fetch(URL)
+        .then( function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code:' +
+                response.status);
+                return;
+            }
+
+            // Examine the text in the response
+            response.json().then(function(html) {
+                $('#SearchCol').html(html.SelectProvince);
+                $('#DistrictCol').html(html.SelectDistrict);
+                $('#DistrictCol').removeClass('d-none');
+                $('#Action').removeAttr("disabled");
+
+                if ($('#DateCol').hasClass('d-none') == false) {
+                    $('#DateCol').addClass('d-none');
+                }
+            });
+        })
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });    
+
+    } else if ($('#Field').val() == 'CreatedDate') {
+        $('#DateCol').removeClass('d-none'); 
+        $('#Action').removeAttr("disabled");
+
+        if ($('#SearchCol').hasClass('d-none') == false) {
+            $('#SearchCol').addClass('d-none');
+        }
+
+        if ($('#DistrictCol').hasClass('d-none') == false) {
+            $('#DistrictCol').addClass('d-none');
+        }
+
+        if ($('#SubDistrictCol').hasClass('d-none') == false) {
+            $('#SubDistrictCol').addClass('d-none');
+        }
+
+    } else {
+        let html = 
+        "<input type='text' class='form-control' id='SearchTerm' name='SearchTerm' " + 
+        "placeholder='" + $('#EnterSearchTerm').val() + "' onkeyup='KeySearchTerm()'> " + 
+        "<input type=hidden name=province_ID value=''>"
+
+        $('#SearchCol').html(html);
+
+        if ($('#SearchCol').hasClass('d-none')) {
+            $('#SearchCol').removeClass('d-none');
+        }
+
+        if ($('#DistrictCol').hasClass('d-none') == false) {
+            $('#DistrictCol').addClass('d-none');
+        }
+
+        if ($('#SubDistrictCol').hasClass('d-none') == false) {
+            $('#SubDistrictCol').addClass('d-none');
+        }
+
+        if ($('#DateCol').hasClass('d-none') == false) {
+            $('#DateCol').addClass('d-none');
+        }
+
+        if ($('#Field').val() != '' && $('#SearchTerm').val() != '') {
+            $('#Action').removeAttr("disabled");
+        } else if (!$('#Action').prop('disabled')) {
+            $('#Action').attr("disabled", true);
+        }
+    }
+} // SelectField
+
+function KeySearchTerm() {
+    if ($('#Field').val() != '' && $('#SearchTerm').val() != '') {
+        $('#Action').removeAttr("disabled");
+    } else if (!$('#Action').prop('disabled')) {
+        $('#Action').attr("disabled", true);
+    }
+} // KeySearchTerm
+
+function changeProvince() {
+    var URL = $('#BACKEND_URL').val() + 'people/api/changeProvince/th/' + $('#province_ID').val();
+
+    //$('#Debug').text(URL)
+
+    fetch(URL)
+    .then( function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code:' +
+            response.status);
+            return;
+        }
+
+        // Examine the text in the response
+        response.json().then(function(html) {
+            $('#DistrictCol').html(html.SelectDistrict);
+            
+            if ($('#SubDistrictCol').hasClass('d-none') == false) {
+                $('#SubDistrictCol').addClass('d-none');
+            }
+        });
+    })
+    .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+    });    
+} // changeProvince
+
+function changeDistrict() {
+    var URL = $('#BACKEND_URL').val() + 'people/api/changeDistrict/th/' + $('#district_ID').val();
+
+    fetch(URL)
+    .then( function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code:' +
+            response.status);
+            return;
+        }
+
+        // Examine the text in the response
+        response.json().then(function(html) {
+            $('#SubDistrictCol').html(html.SelectSubDistrict);
+            $('#SubDistrictCol').removeClass('d-none');
+        });
+    })
+    .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+    });    
+} // changeDistrict
+</script>

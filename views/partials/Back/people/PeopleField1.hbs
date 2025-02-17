@@ -1,0 +1,73 @@
+{{#ifCond People.ID '!=' 'add'}}
+<div class="form-group row">
+    <label for="ID" class="{{FormControl.LabelClass}} col-form-label">ID</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" value="{{People.ID}}" readonly>
+    </div>
+</div>
+{{/ifCond}}
+
+<div class="form-group row">
+    <label for="Title" class="{{FormControl.LabelClass}} col-form-label">{{Label.Title}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Title" name="Title" value="{{People.Title}}" placeholder="{{Label.Title}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="FirstName" class="{{FormControl.LabelClass}} col-form-label">{{Label.FirstName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="FirstName" name="FirstName" value="{{People.FirstName}}" placeholder="{{Label.FirstName}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="LastName" class="{{FormControl.LabelClass}} col-form-label">{{Label.LastName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="LastName" name="LastName" value="{{People.LastName}}" placeholder="{{Label.LastName}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="NickName" class="{{FormControl.LabelClass}} col-form-label">{{Label.NickName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="NickName" name="NickName" value="{{People.NickName}}" placeholder="{{Label.NickName}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Telephone" class="{{FormControl.LabelClass}} col-form-label">{{Label.Telephone}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="tel" class="form-control" id="Telephone" name="Telephone" value="{{People.Telephone}}" placeholder="{{Label.Telephone}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Line" class="{{FormControl.LabelClass}} col-form-label">Line</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Line" name="Line" value="{{People.Line}}" placeholder="Line"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Facebook" class="{{FormControl.LabelClass}} col-form-label">Facebook</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Facebook" name="Facebook" value="{{People.Facebook}}" placeholder="Facebook" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Others" class="{{FormControl.LabelClass}} col-form-label">Others</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Others" name="Others" value="{{People.Others}}" placeholder="Others" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+

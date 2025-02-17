@@ -1,0 +1,101 @@
+<script>
+function haveWhitespace(str) { 
+    let whitespace = new Set([" ", "\t", "\n"]); 
+    for (let i = 0; i < str.length; i++) { 
+        if (whitespace.has(str[i])) { 
+            return true; 
+        } 
+    } 
+    return false; 
+} 
+
+function isAlphanumeric(str) {
+  return /^[a-zA-Z0-9\d-_]+$/.test(str);
+}
+
+function CheckUserName(OldID,UserName) {
+        if (UserName == OldID) {
+        document.getElementById("UserNameMustUnique").classList.add("d-none") 
+        document.getElementById("UserNameMustAlphanumeric").classList.add("d-none") 
+        document.getElementById("UserNameMustNotSpaces").classList.add("d-none") 
+        document.getElementById("Submit").disabled = false  
+    } else if (haveWhitespace(UserName)) {
+        document.getElementById("UserNameMustUnique").classList.add("d-none") 
+        document.getElementById("UserNameMustAlphanumeric").classList.add("d-none") 
+        document.getElementById("UserNameMustNotSpaces").classList.remove("d-none") 
+        document.getElementById("Submit").disabled = true 
+    } else if (!isAlphanumeric(UserName)) {
+        document.getElementById("UserNameMustUnique").classList.add("d-none") 
+        document.getElementById("UserNameMustAlphanumeric").classList.remove("d-none") 
+        document.getElementById("UserNameMustNotSpaces").classList.add("d-none") 
+        document.getElementById("Submit").disabled = true 
+    } else {
+        var URL = document.getElementById('BACKEND_URL').value + 
+                'user/api/getByUserName/' + UserName 
+
+        fetch(URL)
+        .then( function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code:' +
+                response.status);
+                return;
+            }
+
+            // Examine the text in the response
+            response.json().then(function(User) {
+                if (User.length > 0) {
+                    document.getElementById("UserNameMustUnique").classList.remove("d-none") 
+                    document.getElementById("UserNameMustNotSpaces").classList.add("d-none") 
+                    document.getElementById("UserNameMustAlphanumeric").classList.add("d-none") 
+                    document.getElementById("Submit").disabled = true 
+                } else {
+                    document.getElementById("UserNameMustUnique").classList.add("d-none") 
+                    document.getElementById("UserNameMustNotSpaces").classList.add("d-none") 
+                    document.getElementById("UserNameMustAlphanumeric").classList.add("d-none") 
+                    document.getElementById("Submit").disabled = false  
+                }
+            });
+        })
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });
+    }    
+} // CheckUserName
+
+function CheckPassword() {
+    if (document.getElementById("Password").value == 
+        document.getElementById("ConfirmPassword").value) 
+    {
+        document.getElementById("PasswordNotMatch").classList.add("d-none") 
+        document.getElementById("Submit").disabled = false  
+    } else {
+        document.getElementById("PasswordNotMatch").classList.remove("d-none") 
+        document.getElementById("Submit").disabled = true  
+    }
+} // CheckPassword
+
+function CheckFileSize( fi ) {
+    if (fi.files.length > 0) {
+        for (const i = 0; i <= fi.files.length - 1; i++) {
+            const fsize = fi.files.item(i).size;
+
+            const file = Math.round((fsize / 1024));
+
+            if (file >= 10240) {
+                $('#FileSizeLimit10').removeClass('d-none');
+
+                document.getElementById('FileSizeError').value = "Y";
+                document.getElementById("Submit").disabled = true;  
+            } else {
+                if ($('#FileSizeLimit10').hasClass('d-none') == false) {
+                    $('#FileSizeLimit10').addClass('d-none');
+                }
+
+                document.getElementById('FileSizeError').value = "N";
+                document.getElementById("Submit").disabled = false;  
+            }
+        }
+    }
+} 
+
+</script>

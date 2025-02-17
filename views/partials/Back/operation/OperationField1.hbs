@@ -1,0 +1,98 @@
+{{#ifCond Operation.ID '!=' 'add'}}
+<div class="form-group row">
+    <label for="ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.ID}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" value="{{Operation.ID}}" readonly>
+    </div>
+</div>
+{{/ifCond}}
+
+<div class="form-group row">
+    <label for="Name" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.OperationName}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <textarea class="form-control" id="Name" name="Name" placeholder="{{Label.OperationName}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly {{/ifCond}} required>{{Operation.Name}}</textarea>
+    </div>
+</div> 
+
+<div class="form-group row">
+    <label for="Status" class="{{FormControl.LabelClass}} col-form-label">{{Label.Status}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{Operation.Status}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectStatus}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Date" class="{{FormControl.LabelClass}} col-form-label">{{Label.Date}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{Operation.Date}}" readonly>
+        {{else}} 
+            <input type="text" class="form-control date-picker" id="Date" name="Date"   
+            data-date-language='{{FormControl.DateLanguage}}' value="{{Operation.Date}}" required> 
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="BeginDateTime" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.BeginDateTime}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <div class="row">
+    {{#ifCond FormControl.Mode '==' 'View'}}  
+        <div class="col">
+            <input type="text" class="form-control" value="{{Operation.BeginDate}}" readonly>
+        </div>
+        <div class="col">
+            <input type="time" class="form-control" value="{{Operation.BeginTime}}" readonly>
+        </div>
+    {{else}} 
+        <div class="col">
+            <input type="text" class="form-control date-picker" id="BeginDate" name="BeginDate"   
+            data-date-language='{{FormControl.DateLanguage}}' value="{{Operation.BeginDate}}" required> 
+        </div>
+        <div class="col">
+            <input type="time" class="form-control" name="BeginTime" value="{{Operation.BeginTime}}">
+        </div>
+    {{/ifCond}}
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="EndDateTime" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.EndDateTime}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <div class="row">
+    {{#ifCond FormControl.Mode '==' 'View'}}  
+        <div class="col">
+            <input type="text" class="form-control" value="{{Operation.EndDate}}" readonly>
+        </div>
+        <div class="col">
+            <input type="time" class="form-control" value="{{Operation.EndTime}}" readonly>
+        </div>
+    {{else}} 
+        <div class="col">
+            <input type="text" class="form-control date-picker" id="EndDate" name="EndDate"   
+            data-date-language='{{FormControl.DateLanguage}}' value="{{Operation.EndDate}}" required> 
+        </div>
+        <div class="col">
+            <input type="time" class="form-control" name="EndTime" value="{{Operation.EndTime}}">
+        </div>
+    {{/ifCond}}
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Type" class="{{FormControl.LabelClass}} col-form-label">{{Label.Type}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{Operation.Type}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectType}}}
+        {{/ifCond}}
+    </div>
+</div>

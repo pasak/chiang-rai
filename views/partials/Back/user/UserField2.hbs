@@ -1,0 +1,62 @@
+<div class="form-group row">
+    <label for="FirstName" class="{{FormControl.LabelClass}} col-form-label">{{Label.FirstName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="FirstName" name="FirstName" value="{{user.FirstName}}" placeholder="{{Label.FirstName}}" required>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="LastName" class="{{FormControl.LabelClass}} col-form-label">{{Label.LastName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="LastName" name="LastName" value="{{user.LastName}}" placeholder="{{Label.LastName}}" required>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="NickName" class="{{FormControl.LabelClass}} col-form-label">{{Label.NickName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="NickName" name="NickName" value="{{user.NickName}}" placeholder="{{Label.NickName}}">
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Telephone" class="{{FormControl.LabelClass}} col-form-label">{{Label.Telephone}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="tel" class="form-control" id="Telephone" name="Telephone" value="{{user.Telephone}}" placeholder="{{Label.Telephone}}">
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Email" class="{{FormControl.LabelClass}} col-form-label">{{Label.Email}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="tel" class="form-control" id="Email" name="Email" value="{{user.Email}}" placeholder="{{Label.Email}}">
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="BirthDate" class="{{FormControl.LabelClass}} col-form-label">{{Label.BirthDate}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control date-picker" id="BirthDate" name="BirthDate"   
+            data-date-language='{{FormControl.DateLanguage}}' value="{{user.BirthDate}}" required> 
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="province_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.Province}}</label>
+    <div class="{{FormControl.InputClass}}"> {{{FormControl.SelectProvince}}} </div>
+</div>
+
+<div class="form-group row">
+    <label for="ElectionDistrictNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.ElectionDistrictNumber}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" class="form-control" id="ElectionDistrictNumber" name="ElectionDistrictNumber" value="{{user.ElectionDistrictNumber}}" placeholder="{{Label.ElectionDistrictNumber}}">
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="IsActive" class="{{FormControl.LabelClass}} col-form-label">{{Label.IsActive}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="checkbox" id="IsActive" name="IsActive" value="Y" 
+        {{#ifCond user.IsActive '==' 'Y'}}checked{{/ifCond}}>
+    </div>
+</div>

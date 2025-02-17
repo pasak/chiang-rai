@@ -1,0 +1,41 @@
+<div class="form-group row">
+    <label for="Latitude" class="{{FormControl.LabelClass}} col-form-label">Latitude</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Latitude" name="Latitude" value="{{Operation.Latitude}}" placeholder="Latitude" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Longitude" class="{{FormControl.LabelClass}} col-form-label">Longitude</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Longitude" name="Longitude" value="{{Operation.Longitude}}" placeholder="Longitude" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="home-search-location" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.PlaceName}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <input type='text' class='form-control' id='home-search-location' aria-describedby='task-location' 
+        value="{{Operation.GooglePlaceName}}" placeholder="{{Label.PlaceName}}" onfocus="geolocate()"  
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="form-group row">
+    <div class="col-12">
+        <div id='home-map' style='height: 240px; border:1px solid #b3b3b3; margin-bottom: 10px;'></div> 
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+
+{{#if FormControl.Debug }}
+    <p>location_name  <input type="text" id="location_name"  name="location_name" ></p>
+    <p>location_place_id <input type="text" id="location_place_id" name="location_place_id"></p>
+{{else}}
+    <input type="hidden" id="location_name"  name="location_name" >
+    <input type="hidden" id="location_place_id" name="location_place_id">
+{{/if}}

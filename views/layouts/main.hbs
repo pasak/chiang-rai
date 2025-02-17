@@ -1,0 +1,9 @@
+{{#ifCond FormControl.System '==' 'Admin'}}
+    {{> Back/BackMain}}
+{{/ifCond}}
+{{#ifCond FormControl.System '==' 'Team'}}
+    {{> Back/BackTeam}}
+{{/ifCond}}
+{{#ifCond FormControl.System '==' 'Manual'}}
+    {{> Back/BackManual}}
+{{/ifCond}}

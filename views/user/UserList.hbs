@@ -1,0 +1,86 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{Label.Team}}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item active">{{Label.Team}}</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                    {{Label.List}} {{Label.Team}}
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>{{Label.Name}}</th>
+                    <th>{{Label.UserName}}</th>
+                    <th>{{Label.Password}}</th>
+                    <th>{{Label.Role}}</th>
+                    <th>Line User ID</th>
+                    <th>{{Label.IsActive}}</th>
+                    <th><a href="/back/user/edit/add"><i class="fa fa-plus"></i> {{Label.Add}}</a></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+{{#each UserList}}                    
+                  <tr>
+                    <td>{{this.ID}}</td>
+                    <td>{{this.FirstName}}</td>
+                    <td>{{this.UserName}}</td>
+                    <td>{{this.Password}}...</td>
+                    <td>{{this.Role}}</td>
+                    <td>{{this.LineUserID}}...</td>
+                    <td class="text-center">
+                    {{#ifCond this.IsActive '==' 'Y'}}
+                        <i class="fa fa-check-square"></i>
+                    {{else}}
+                        <i class="fa fa-square-o"></i>
+                    {{/ifCond}}
+                    </td>
+                    <td>
+                      <a href="/back/user/edit/{{this.ID}}"><i class="fa fa-edit"></i> {{this.Edit}}</a>&nbsp; 
+                      {{#ifCond this.Delete '!=' null}}
+                        <a href="/back/user/delete/{{this.ID}}" onclick="return confirm('{{this.DeleteConfirm}}')">
+                          <i class="fa fa-trash"></i> {{this.Delete}}</a> 
+                      {{/ifCond}}
+                    </td>
+                  </tr>
+{{/each}}                  
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

@@ -1,0 +1,26 @@
+<div class="form-group row">
+    <label for="ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.ID}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="ID" name="ID" value="{{team.ID}}" disabled>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Picture" class="{{FormControl.LabelClass}} col-form-label">{{Label.Picture}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Image '!=' ''}} 
+        <a href="{{FormControl.Image}}" target="_blank"><img src="{{FormControl.Image}}" height="100"></a> <br> 
+        {{/ifCond}}
+        <input type="file" name="file" class="form-control" onchange="CheckFileSize(this)">
+        <span id="FileSizeLimit10" class="text-danger d-none">{{Label.FileSizeLimit10}}</span>
+        <input type="hidden" id="FileSizeError" value="N">
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Title" class="{{FormControl.LabelClass}} col-form-label">{{Label.Title}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Title" name="Title" value="{{team.Title}}" placeholder="{{Label.Title}}" required>
+    </div>
+</div>
+

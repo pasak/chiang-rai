@@ -1,0 +1,31 @@
+<html>
+<body>
+<h1 id="TeamLeaderID">Team Leader ID is...</h1>
+
+</body>
+</html>
+<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+<script>
+async function main() {
+    await liff.init({ liffId: '1653771216-4Xwmw5z8' });
+
+    if (liff.isLoggedIn()) {
+        await liff.getProfile().then(profile => {
+            document.getElementById('LiffAppID').value = LiffAppID;
+            document.getElementById('LineUserID').value = profile.userId;
+            document.getElementById('DisplayName').value = profile.displayName;
+            document.getElementById('Picture').value = profile.pictureUrl;
+            document.getElementById('Email').value = liff.getDecodedIDToken().email;
+        });
+    } else {
+        liff.login();
+    }
+
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById('TeamLeaderID').innerText = 'Team Leader ID is ' + params.get('TeamLeaderID');
+} // main
+
+main();
+</script>
+

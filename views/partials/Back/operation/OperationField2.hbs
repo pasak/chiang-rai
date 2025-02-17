@@ -1,0 +1,81 @@
+<div class="form-group row">
+    <label for="Description" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.OperationDescription}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <textarea class="form-control" id="Description" name="Description" placeholder="{{Label.OperationDescription}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly {{/ifCond}}>{{Operation.Description}}</textarea>
+    </div>
+</div> 
+
+<div class="form-group row">
+    <label for="ExpectedAmount" class="{{FormControl.LabelClass}} col-form-label">{{Label.ExpectedAmount}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" class="form-control" id="ExpectedAmount" min="0" name="ExpectedAmount" value="{{Operation.ExpectedAmount}}" placeholder="{{Label.ExpectedAmount}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} required> {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="ActualAmount" class="{{FormControl.LabelClass}} col-form-label">{{Label.ActualAmount}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" class="form-control" id="ActualAmount" min="0" name="ActualAmount" value="{{Operation.ActualAmount}}" placeholder="{{Label.ActualAmount}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} required> {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="province_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.Province}}</label>
+    <div class="{{FormControl.InputClass}}" id="SelectProvince">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{Operation.Province}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectProvince}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="ElectionDistrictNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.ElectionDistrictNumber}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" class="form-control" id="ElectionDistrictNumber" name="ElectionDistrictNumber" value="{{Operation.ElectionDistrictNumber}}" placeholder="{{Label.ElectionDistrictNumber}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+
+<div class="form-group row">
+    <label for="Remark" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.Remark}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <textarea class="form-control" id="Remark" name="Remark" placeholder="{{Label.Remark}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly {{/ifCond}}>{{Operation.Remark}}</textarea>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="ResponsibleName" class="{{FormControl.LabelClass}} col-form-label">{{Label.ResponsibleName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="ResponsibleName" name="ResponsibleName" value="{{Operation.ResponsibleName}}" placeholder="{{Label.ResponsibleName}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="SupervisorName" class="{{FormControl.LabelClass}} col-form-label">{{Label.SupervisorName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="SupervisorName" name="SupervisorName" value="{{Operation.SupervisorName}}" placeholder="{{Label.SupervisorName}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Picture" class="{{FormControl.LabelClass}} col-form-label">{{Label.Picture}}</label>
+    <div class="{{FormControl.InputClass}}">
+        {{#ifCond FormControl.Image '!=' null}} 
+            <a href="{{FormControl.Image}}" target="_blank"><img src="{{FormControl.Image}}" height="100"></a> &nbsp; 
+        {{/ifCond}}
+        {{#ifCond FormControl.Mode '!=' 'View'}} 
+            <input type="file" name="file" class="form-control" accept="image/*, video/*" capture  onchange="CheckFileSize(this)">
+            <span id="FileSizeLimit10" class="text-danger d-none">{{Label.FileSizeLimit10}}</span>
+            <input type="hidden" id="FileSizeError" value="N">
+        {{/ifCond}}
+    </div>
+</div>

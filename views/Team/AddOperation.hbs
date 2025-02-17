@@ -1,0 +1,30 @@
+<div class="container-fluid my-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6 col-12 fs-3">{{Label.Add}} {{Label.Operation}}</div>
+                <div class="col-sm-6 col-12 text-end pt-3">
+                    <a href="/back/team/operation/add"><i class="fa fa-plus"></i> {{Label.Add}}</a> &nbsp; 
+                    <a href="/back/team/operation/list"><i class="fa fa-list"></i> {{Label.List}}</a>
+                </div>
+            </div>
+        </div><!-- card-header -->
+        <form class="form-horizontal" method="post" action="/back/team/operation/save" enctype="multipart/form-data">
+        <div class="card-body">
+            {{> Back/operation/OperationField1}}
+            {{> Back/operation/OperationField2}}
+            {{> Back/operation/OperationField3}}
+        </div><!-- card-body -->
+        <div class="card-footer">
+            <input type="submit" id="Submit" class="btn btn-success" value="{{Label.Save}}">
+            <a href="/back/team/operation" class="btn btn-default float-right">{{Label.Cancel}}</a>
+        </div>
+        <!-- /.card-footer -->
+
+        <input type="hidden" name="OperationID" value="add">
+        <input type="hidden" id="BACKEND_URL"   value="{{FormControl.BACKEND_URL}}">
+        </form>
+    </div><!-- card -->
+</div><!-- container-fluid -->
+
+{{> Back/operation/OperationScript}}
