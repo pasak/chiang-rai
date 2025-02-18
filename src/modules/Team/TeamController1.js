@@ -59,7 +59,7 @@ async teamReply (req,res) {
         } // if (ReplyMessage != null)
     }
 
-    console.log('response ' + JSON.stringify(response))
+    // console.log('response ' + JSON.stringify(response))
 
     res.send(response)
 } // teamReply
