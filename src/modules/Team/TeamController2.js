@@ -125,7 +125,7 @@ async listPeople (req,res) {
         const FormControl = { 
             System:             'Team',
             Page:               'People',
-            Title:              'My Prachin Team',
+            Title:              'Chiang Rai Team',
             ENVIRONMENT:        process.env.ENVIRONMENT,
             BACKEND_URL:        process.env.BACKEND_URL,
             SelectField:        SelectField
@@ -152,7 +152,7 @@ async viewPeople (req,res) {
         const FormControl = { 
             System:             'Team',
             Page:               'ViewPeople',
-            Title:              'My Prachin Team',
+            Title:              'Chiang Rai Team',
             ENVIRONMENT:        process.env.ENVIRONMENT,
             Mode:               'View',
             GOOGLE_MAPS_API_KEY:    process.env.GOOGLE_MAPS_API_KEY,
@@ -270,7 +270,7 @@ async editPeople (req,res) {
         const FormControl = { 
             System:             'Team',
             Page:               'People',
-            Title:              'My Prachin Team',
+            Title:              'Chiang Rai Team',
             ENVIRONMENT:        process.env.ENVIRONMENT,
             GOOGLE_MAPS_API_KEY:    process.env.GOOGLE_MAPS_API_KEY,
             BACKEND_URL:        process.env.BACKEND_URL,
@@ -324,7 +324,7 @@ async searchPeople (req,res) {
         const FormControl = { 
             System:             'Team',
             Page:               'People',
-            Title:              'My Prachin Team',
+            Title:              'Chiang Rai Team',
             ENVIRONMENT:        process.env.ENVIRONMENT,
             BACKEND_URL:        process.env.BACKEND_URL,
             LabelClass:         'col-sm-3 col-6',
