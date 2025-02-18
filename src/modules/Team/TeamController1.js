@@ -101,7 +101,7 @@ async people (req,res) {
 
         const FormControl = { 
             System:         'Team',
-            Title:          'My Prachin Team', 
+            Title:          'Chiang Rai Team', 
             ENVIRONMENT:    process.env.ENVIRONMENT
         }
 
