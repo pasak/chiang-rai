@@ -180,7 +180,7 @@ async editPeople (req,res) {
 
         People.BirthDate = getDateString(new Date(People.BirthDate),'th')
         
-
+/*
         var SelectProvince = "<select name=province_ID id=province_ID class='form-control' onchange='changeProvince()'>" 
 
         var List = await TeamModel.getList('province','Y')
@@ -246,11 +246,17 @@ async editPeople (req,res) {
         })
 
         SelectMemberRole += "</select>"
+*/
+        var SelectSubDistrict = "<input type=hidden name=sub_district_ID value=" + People.sub_district_ID + " />"
+
+        var SelectMemberType = "<input type=hidden name=MemberType value=" + People.MemberType + " />"
+
+        var SelectMemberRole = "<input type=hidden name=MemberRole value=" + People.MemberRole + " />"
 
 
         var SelectProspective = "<select name=Prospective id=Prospective class='form-control'>" 
 
-        List = await TeamModel.getMasterField('Prospective')
+        var List = await TeamModel.getMasterField('Prospective')
 
         List.map((MasterField) => {
             let s = (MasterField.Value == People.Prospective) ? 'selected' : '' 
@@ -272,9 +278,9 @@ async editPeople (req,res) {
             InputClass:         'col-sm-9 col-6',
             fullLabelClass:     'col-sm-3',
             fullInputClass:     'col-sm-9',
-            DateLanguage:       'th-th', 
+            /*DateLanguage:       'th-th', 
             SelectProvince:     SelectProvince, 
-            SelectDistrict:     SelectDistrict,
+            SelectDistrict:     SelectDistrict,*/
             SelectSubDistrict:  SelectSubDistrict,
             SelectMemberType:   SelectMemberType, 
             SelectMemberRole:   SelectMemberRole, 
