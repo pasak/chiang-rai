@@ -157,7 +157,9 @@ async addPeople (req,res) {
                 "class='border rounded-3 px-2 py-1 " + border + "'>" +
                 "<span class='badge rounded-circle' style='background-color: " + MasterField.Value + ";'>&nbsp;</span> " + 
                 Label[MasterField.Value] + 
-            "</span><br>"
+            "</span>" 
+
+            if (MasterField.Value != 'red') { InputColor += "<br><br>" }
         })
 
         const FormControl = { 
