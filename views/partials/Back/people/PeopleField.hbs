@@ -40,12 +40,12 @@
 </div>
 
 <div class="form-group row">
-    <label for="Prospective" class="{{FormControl.LabelClass}} col-form-label">{{Label.Prospective}}</label>
+    <label for="Code" class="{{FormControl.LabelClass}} col-form-label">{{Label.ColorCode}}</label>
     <div class="{{FormControl.InputClass}}">
         {{#ifCond FormControl.Mode '==' 'View'}}  
-            <input type="text" class="form-control" value="{{People.Prospective}}" readonly>
+            {{{People.Color}}}
         {{else}} 
-            {{{FormControl.SelectProspective}}}
+            {{{FormControl.InputColor}}}
         {{/ifCond}}
     </div>
 </div>

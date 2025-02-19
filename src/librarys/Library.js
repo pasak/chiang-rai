@@ -121,9 +121,13 @@ Other:          (L=='th') ? 'อื่น ๆ' : (L=='zh') ? '' : 'Other',
 
 MemberType:     (L=='th') ? 'ประเภทสมาชิก' : (L=='zh') ? '' : 'Member type', 
 MemberRole:     (L=='th') ? 'บทบาท' : (L=='zh') ? '' : 'Member role', 
-Prospective:    (L=='th') ? 'รหัสสี' : (L=='zh') ? '' : 'Color code', 
+ColorCode:      (L=='th') ? 'รหัสสี' : (L=='zh') ? '' : 'Color code', 
 OperationType:  (L=='th') ? 'ประเภทงาน' : (L=='zh') ? '' : 'Operation type', 
 OperationStatus:(L=='th') ? 'สถานะงาน' : (L=='zh') ? '' : 'Operation status', 
+
+green:          (L=='th') ? 'เขียว' : (L=='zh') ? '' : 'Green', 
+yellow:         (L=='th') ? 'เหลือง' : (L=='zh') ? '' : 'Yellow', 
+red:            (L=='th') ? 'แดง' : (L=='zh') ? '' : 'Red', 
 
 MasterField:    (L=='th') ? 'Master field' : (L=='zh') ? '' : 'Master field', 
 FieldName:      (L=='th') ? 'ชื่อฟิลด์' : (L=='zh') ? '' : 'Field name', 

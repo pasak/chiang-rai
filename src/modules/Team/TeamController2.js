@@ -37,6 +37,7 @@ async savePeople (req,res) {
             MemberType:             req.body.MemberType,
             MemberRole:             req.body.MemberRole,
             Prospective:            req.body.Prospective,
+            Color:                  req.body.Color,
             Remark:                 req.body.Remark
         }
 
@@ -148,6 +149,12 @@ async viewPeople (req,res) {
         //console.log('#146 People '+JSON.stringify(People))
 
         People.BirthDate = getDateString(new Date(People.BirthDate),'th')
+
+        People.Color = 
+        "<span class='border rounded-3 px-2 py-1 me-3'>" + 
+            "<span class='badge rounded-circle' style='background-color: " + People.Color + ";'>&nbsp;</span> " + 
+            Label[People.Color] + 
+        "</span>"
         
         const FormControl = { 
             System:             'Team',
@@ -180,92 +187,28 @@ async editPeople (req,res) {
 
         People.BirthDate = getDateString(new Date(People.BirthDate),'th')
         
-/*
-        var SelectProvince = "<select name=province_ID id=province_ID class='form-control' onchange='changeProvince()'>" 
-
-        var List = await TeamModel.getList('province','Y')
-
-        List.map((Province) => {
-            let s = (Province.ID == People.province_ID) ? 'selected' : '' 
-
-            SelectProvince += "<option value=" + Province.ID +" "+ s +">"+ Province.ThaiName + "</option>"
-        })
-
-        SelectProvince += "</select>"
-
-
-        var SelectDistrict = "<select name=district_ID id=district_ID class='form-control' onchange='changeDistrict()'>" 
-
-        List = await TeamModel.getDistrictListByProvinceID(People.province_ID)
-
-        List.map((District) => {
-            let s = (District.ID == People.district_ID) ? 'selected' : '' 
-
-            SelectDistrict += "<option value=" + District.ID +" "+ s +">"+ District.ThaiName + "</option>"
-        })
-
-        SelectDistrict += "</select>"
-
-
-        var SelectSubDistrict = "<select name=sub_district_ID id=sub_district_ID class='form-control'>" 
-
-        List = await TeamModel.getSubDistrictListByDistrictID(People.district_ID)
-
-        List.map((SubDistrict) => {
-            let s = (SubDistrict.ID == People.sub_district_ID) ? 'selected' : '' 
-
-            SelectSubDistrict += "<option value=" + SubDistrict.ID +" "+ s +">"+ SubDistrict.ThaiName + "</option>"
-        })
-
-        SelectSubDistrict += "</select>"
-
-
-        var SelectMemberType = "<select name=MemberType id=MemberType class='form-control'>" 
-
-        List = await TeamModel.getMasterField('MemberType')
-
-        // console.log('MemberType '+JSON.stringify(List))
-
-        List.map((MasterField) => {
-            let s = (MasterField.Value == People.MemberType) ? 'selected' : '' 
-
-            SelectMemberType += "<option value='" + MasterField.Value +"' "+ s +">"+ MasterField.Value + "</option>"
-        })
-
-        SelectMemberType += "</select>"
-
-
-        var SelectMemberRole = "<select name=MemberRole id=MemberRole class='form-control'>" 
-
-        List = await TeamModel.getMasterField('MemberRole')
-
-        List.map((MasterField) => {
-            let s = (MasterField.Value == People.MemberRole) ? 'selected' : '' 
-
-            SelectMemberRole += "<option value='" + MasterField.Value +"' "+ s +">"+ MasterField.Value + "</option>"
-        })
-
-        SelectMemberRole += "</select>"
-*/
         var SelectSubDistrict = "<input type=hidden name=sub_district_ID value=" + People.sub_district_ID + " />"
 
         var SelectMemberType = "<input type=hidden name=MemberType value=" + People.MemberType + " />"
 
         var SelectMemberRole = "<input type=hidden name=MemberRole value=" + People.MemberRole + " />"
 
+        var SelectProspective = "<input type=hidden name=Prospective value=" + People.Prospective + " />"
 
-        var SelectProspective = "<select name=Prospective id=Prospective class='form-control'>" 
+        var InputColor = "<input type=hidden id=Color name=Color value=" + People.Color + " />"
 
-        var List = await TeamModel.getMasterField('Prospective')
+        var List = await TeamModel.getMasterField('Color')
 
-        List.map((MasterField) => {
-            let s = (MasterField.Value == People.Prospective) ? 'selected' : '' 
+        List.map((MasterField) => { 
+            let border = (MasterField.Value == People.Color) ? 'border-danger' : ''
 
-            SelectProspective += "<option value='" + MasterField.Value +"' "+ s +">"+ MasterField.Value + "</option>"
+            InputColor += 
+            "<span onclick=\"$('#Color').val('" + MasterField.Value + "'); $('.border-danger').removeClass('border-danger'); $(this).addClass('border-danger');\" " + 
+                "class='border rounded-3 px-2 py-1 me-3 " + border + "'>" +
+                "<span class='badge rounded-circle' style='background-color: " + MasterField.Value + ";'>&nbsp;</span> " + 
+                Label[MasterField.Value] + 
+            "</span>"
         })
-
-        SelectProspective += "</select>"
-
 
         const FormControl = { 
             System:             'Team',
@@ -285,6 +228,7 @@ async editPeople (req,res) {
             SelectMemberType:   SelectMemberType, 
             SelectMemberRole:   SelectMemberRole, 
             SelectProspective:  SelectProspective, 
+            InputColor:         InputColor,
             Image:              (People.Picture == null) ? null : process.env.UPLOADS_URL + People.Picture 
         }
 
