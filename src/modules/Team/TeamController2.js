@@ -204,10 +204,10 @@ async editPeople (req,res) {
 
             InputColor += 
             "<span onclick=\"$('#Color').val('" + MasterField.Value + "'); $('.border-danger').removeClass('border-danger'); $(this).addClass('border-danger');\" " + 
-                "class='border rounded-3 px-2 py-1 me-3 " + border + "'>" +
+                "class='border rounded-3 px-2 py-1 " + border + "'>" +
                 "<span class='badge rounded-circle' style='background-color: " + MasterField.Value + ";'>&nbsp;</span> " + 
                 Label[MasterField.Value] + 
-            "</span>"
+            "</span><br>"
         })
 
         const FormControl = { 
