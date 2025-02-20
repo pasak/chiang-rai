@@ -39,7 +39,7 @@ async edit (req,res) {
         const FormControl = { 
             System:         'Team',
             Page:           'EditTeam',
-            Title:          'My Prachin Team',
+            Title:          'เชียงราย Team',
             ENVIRONMENT:    process.env.ENVIRONMENT,
             DateLanguage:   (team.Language == 'en') ? 'en' : 'th-th',
             Image:          (team.Picture == '') ? '' : 
