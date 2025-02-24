@@ -130,7 +130,7 @@ out
 .yarn/install-state.gz
 .pnp.*
 
-public/uploads
+#public/uploads
 n.bat
 gp.bat
 package-lock.json
