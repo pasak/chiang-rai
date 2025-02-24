@@ -36,12 +36,13 @@ async search (req,res) {
             var CSV = {
                 ID:         'People ID', 
                 Picture:    'รูปภาพ', 
-                Title:      'คำนำหน้า',
+                // Title:      'คำนำหน้า',
                 FirstName:  'ชื่อ',
                 LastName:   'นามสกุล',
                 NickName:   'ชื่อเล่น',
                 Telephone:  'โทรศัพท์',
-                Line:       'Line',
+                Color:      'รหัสสี',
+                /*Line:       'Line',
                 Facebook:   'Facebook',
                 Others:     'Others',
                 BirthDate:  'วันเกิด',
@@ -50,10 +51,10 @@ async search (req,res) {
                 SubDistrict:'ตำบล',
                 Address:    'ที่อยู่',
                 Road:       'ถนน',
-                Village:    'หมู่บ้าน',
+                Village:    'หมู่บ้าน',*/
                 Location:   'พิกัด',
                 GooglePlaceName:        'ชื่อสถานที่', 
-                ElectionDistrictNumber: 'เขตเลือกตั้ง',
+                /*ElectionDistrictNumber: 'เขตเลือกตั้ง',
                 PollingStationNumber:   'หน่วยเลือกตั้งที่',
                 PollingStationName:     'ชื่อหน่วยเลือกตั้ง',
                 HaveVotingRights:       'สิทธิ์เลือกตั้ง',
@@ -61,7 +62,7 @@ async search (req,res) {
                 MemberRole:             'บทบาท',
                 IsActive:               'สถานะ',
                 Prospective:            'Prospective',
-                Remark:                 'หมายเหตุ',
+                Remark:                 'หมายเหตุ',*/
                 CreatedDateTime:        'วันเวลาที่สร้าง',
                 CreatedBy:              'ผู้สร้าง',
             }
@@ -100,7 +101,8 @@ async search (req,res) {
                     LastName:   People.LastName,
                     NickName:   People.NickName,
                     Telephone:  ''+People.Telephone,
-                    Line:       People.Line,
+                    Color:      People.Color,
+                    /*Line:       People.Line,
                     Facebook:   People.Facebook,
                     Others:     People.Others,
                     BirthDate:  getDateString(new Date(People.BirthDate),User.Language),
@@ -109,10 +111,10 @@ async search (req,res) {
                     SubDistrict:People.SubDistrict,
                     Address:    People.Address,
                     Road:       People.Road,
-                    Village:    People.Village,
-                    Location:   People.Latitude +','+ People.Longitude,
+                    Village:    People.Village,*/
+                    Location:               (People.Latitude == null) ? '' : People.Latitude +','+ People.Longitude,
                     GooglePlaceName:        People.GooglePlaceName, 
-                    ElectionDistrictNumber: People.ElectionDistrictNumber,
+                    /*ElectionDistrictNumber: People.ElectionDistrictNumber,
                     PollingStationNumber:   People.PollingStationNumber,
                     PollingStationName:     People.PollingStationName,
                     HaveVotingRights:       (People.HaveVotingRights == 'Y') ? Label.HaveVotingRights : Label.NoHaveVotingRights,
@@ -120,7 +122,7 @@ async search (req,res) {
                     MemberRole:     People.MemberRole,
                     IsActive:       (People.IsActive == 'Y') ? 'On' : 'Off',
                     Prospective:    People.Prospective,
-                    Remark:         People.Remark, 
+                    Remark:         People.Remark, */
                     CreatedDateTime: getDateString(DT,'th') + ' ' + getTime(DT),
                     CreatedBy:      People.UF + ' ' + People.UL
                 }
