@@ -63,6 +63,7 @@ async zip (req,res) {
      */
     function zipDirectory(sourceDir, outPath) {
       const archive = archiver('zip', { zlib: { level: 9 }});
+      const fs = require('fs');
       const stream = fs.createWriteStream(outPath);
     
       return new Promise((resolve, reject) => {
@@ -77,7 +78,7 @@ async zip (req,res) {
       });
     }
 
-    let result = await zipDirectory('../../../public/uploads','../../../public/downloads/uploads.zip')
+    let result = await zipDirectory('public/uploads','public/downloads/uploads.zip')
 
     res.send(result)
 } // zip
