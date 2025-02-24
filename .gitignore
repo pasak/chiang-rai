@@ -131,7 +131,7 @@ out
 .pnp.*
 
 #public/uploads
-public/downloads
+#public/downloads
 n.bat
 gp.bat
 package-lock.json

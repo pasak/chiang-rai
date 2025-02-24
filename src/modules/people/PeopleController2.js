@@ -82,7 +82,7 @@ async search (req,res) {
                     Field = 'S.district_ID'; SearchTerm = req.body.district_ID;
                 } else if (req.body.province_ID != '') {
                     Field = 'D.province_ID'; SearchTerm = req.body.province_ID;
-                } else {
+                } else if (req.body.Field != '') {
                     Field = 'Pe.'+req.body.Field; SearchTerm = req.body.SearchTerm;
                 }
 
