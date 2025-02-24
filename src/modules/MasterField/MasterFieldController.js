@@ -52,8 +52,8 @@ async list (req,res) {
         const FormControl = {
             System:             'Admin',
             BACKEND_URL:        process.env.BACKEND_URL,
-            Title:              'My Prachin',
-            Logo:               '/media/mp-logo.png',
+            Title:              process.env.BackTitle,
+            Logo:               process.env.BackLogo,
             LabelClass:         'col-sm-3',
             InputClass:         'col-sm-9',
             SelectFieldName:    SelectFieldName, 

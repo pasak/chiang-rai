@@ -16,8 +16,8 @@ async home (req,res) {
             var FormControl = {
                 System:         'Admin',
                 BACKEND_URL:    process.env.BACKEND_URL, 
-                Title:          'My Prachin',
-                Logo:           '/media/mp-logo.png'
+                Title:          process.env.BackTitle,
+                Logo:           process.env.BackLogo
             }        
         
             res.render('home/Home',{ User, Label, FormControl })
