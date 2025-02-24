@@ -1,0 +1,55 @@
+<html>
+<body>
+<div style="text-align: center; padding-top: 100px;">
+    <img src="../media/icon/line-login.png">
+</div>
+
+<div id="errormessage"></div>
+
+<form method=post action="/back/team/loginLine" id="LineForm">
+<input type=text id=LiffAppID   name=LiffAppID      style="width: 100%; margin: 10px"
+    value="1653771216-7EByBleG"><br><!--  Chiang Rai People -->
+<input type=text id=LineUserID  name=LineUserID     style="width: 100%; margin: 10px"
+    value="Uee51d589accbd1e75366989ed4c41b53"><br>
+<input type=text id=DisplayName name=DisplayName    style="width: 100%; margin: 10px"
+    value="Rawinmat"><br>
+<input type=text id=Picture     name=Picture        style="width: 100%; margin: 10px"><br>
+<input type=text id=Email       name=Email          style="width: 100%; margin: 10px"
+    value=""><br><br>
+<input type=text id=Page name=Page><br><br>
+<input type=text id=Latitude name=Latitude><br><br>
+<input type=text id=Longitude name=Longitude><br><br>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
+<script>
+window.onload = function (e) {
+    const debug = false; 
+
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById('Page').value = params.get('Page');
+
+    getLocation();
+
+    if (debug == false) {
+        setTimeout(function(){ 
+            document.getElementById('LineForm').submit();
+        }, 3000);                    
+    }
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        document.getElementById('errormessage').innerText = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    document.getElementById('Latitude').value = position.coords.latitude; 
+    document.getElementById('Longitude').value = position.coords.longitude;
+}
+</script>
