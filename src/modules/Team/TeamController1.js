@@ -71,8 +71,8 @@ async loginLine (req,res) {
         res.send('You are not registered yet.')
     } else {
         // console.log('User ' + JSON.stringify(User))
-
-        if (User.LastName == ' ') {
+/*
+        if (User.LineUserID == null) {
             let Names = req.body.DisplayName.split(' ') 
             let FirstName = Names[0]
             let LastName = (Names[1] == undefined) ? '' : Names[1]
@@ -83,7 +83,7 @@ async loginLine (req,res) {
 
             User = await TeamModel.update('user',User.ID,data)
         }
-
+*/
         req.session.User        = User
         req.session.Latitude    = (req.body.Latitude == '') ? '14.0965588' : req.body.Latitude
         req.session.Longitude   = (req.body.Longitude == '') ? '101.9785422' : req.body.Longitude
