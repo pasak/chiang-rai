@@ -93,6 +93,10 @@ async search (req,res) {
             PeopleList.map((People) => {
                 let DT = new Date(People.CreatedDateTime)
 
+                if (process.env.TZ_HOUR != null) {
+                    DT.setHours( DT.getHours() + Number(process.env.TZ_HOUR) )
+                }
+
                 CSV = {
                     ID:         People.ID, 
                     Picture:    (People.Picture == null) ? '' : process.env.UPLOADS_URL + People.Picture, 
@@ -342,4 +346,72 @@ async changeDistrict (req,res) {
     res.send({ SelectSubDistrict: SelectSubDistrict })
 } // changeDistrict
 
+async exportGoogleSheet (req,res) {
+    var PeopleList, CSVList = []
+
+    try {
+        PeopleList = await TeamModel.searchPeopleCSV( '', '' )
+    } catch (error) {
+        res.status(500).send({ error: 'searchPeopleCSV ' + error.message })
+        return
+    }
+
+    PeopleList.map((People) => {
+        let DT = new Date(People.CreatedDateTime)
+
+        if (process.env.TZ_HOUR != null) {
+            DT.setHours( DT.getHours() + Number(process.env.TZ_HOUR) )
+        }
+
+        People.Picture          = (People.Picture == null) ? '' : process.env.UPLOADS_URL + People.Picture 
+        People.Location         = (People.Latitude == null) ? '' : People.Latitude +','+ People.Longitude
+        People.CreatedDateTime  = getDateString(DT,'th') + ' ' + getTime(DT),
+        People.CreatedBy        = People.UF + ' ' + People.UL
+
+        let CSV = [
+            People.ID, 
+            People.Picture,
+            People.FirstName,
+            People.LastName,
+            People.NickName,
+            People.Telephone,
+            People.Color,
+            People.Location,
+            People.GooglePlaceName, 
+            People.CreatedDateTime,
+            People.CreatedBy
+        ]
+
+        CSVList.push(CSV) 
+    })
+
+    const {google} = require('googleapis')
+
+    const auth = new google.auth.GoogleAuth({
+        keyFile: 'credentials.json',
+        scopes: 'https://www.googleapis.com/auth/spreadsheets',
+    });
+
+    const client = await auth.getClient()
+
+    const googleSheets = google.sheets({version: 'v4', auth: client})
+
+    try {
+        const response = await googleSheets.spreadsheets.values.update({
+            auth, 
+            spreadsheetId: process.env.SPREADSHEET_ID,
+            range: 'People!A2:K' + (CSVList.length + 1),
+            valueInputOption: 'RAW',
+            resource: { values: CSVList }
+        })
+
+        res.send(response)
+    } catch (error) {
+        res.status(500).send({ error: 'spreadsheets update : ' + error.message })
+    }
+} // exportGoogleSheet
+
 } // PeopleController2
+
+
+

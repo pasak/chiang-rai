@@ -121,6 +121,8 @@ BackRouter.get('/people/api/changeProvince/:Language/:province_ID', PeopleContro
 
 BackRouter.get('/people/api/changeDistrict/:Language/:district_ID', PeopleController2.changeDistrict) 
 
+BackRouter.get('/people/exportGoogleSheet', PeopleController2.exportGoogleSheet) 
+
 
 const OperationController = require('../modules/operation/OperationController') 
 
