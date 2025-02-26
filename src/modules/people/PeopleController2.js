@@ -388,7 +388,7 @@ async exportGoogleSheet (req,res) {
     const {google} = require('googleapis')
 
     const auth = new google.auth.GoogleAuth({
-        keyFile: 'credentials.json',
+        keyFile: 'c.json',
         scopes: 'https://www.googleapis.com/auth/spreadsheets',
     });
 
