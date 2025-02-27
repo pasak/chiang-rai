@@ -64,6 +64,14 @@
     </div>
 </div>
 
+<div class="form-group row">
+    <label for="Remark" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.Remark}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <textarea class="form-control" id="Remark" name="Remark" placeholder="{{Label.Remark}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly {{/ifCond}}>{{People.Remark}}</textarea>
+    </div>
+</div>
+
 {{{FormControl.SelectSubDistrict}}}
 {{{FormControl.SelectMemberType}}}
 {{{FormControl.SelectMemberRole}}}

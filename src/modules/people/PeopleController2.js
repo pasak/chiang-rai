@@ -347,7 +347,24 @@ async changeDistrict (req,res) {
 } // changeDistrict
 
 async exportGoogleSheet (req,res) {
-    var PeopleList, CSVList = []
+    var PeopleList, CSV, CSVList = []
+
+    CSV = [
+        'People ID', 
+        'รูปภาพ', 
+        'ชื่อ',
+        'นามสกุล',
+        'ชื่อเล่น',
+        'โทรศัพท์',
+        'รหัสสี',
+        'ตําแหน่ง',
+        'Google Place Name',
+        'หมายเหตุ',
+        'วันเวลาที่สร้าง',
+        'ผู้สร้าง'
+    ]
+
+    CSVList.push(CSV) 
 
     try {
         PeopleList = await TeamModel.searchPeopleCSV( '', '' )
@@ -368,7 +385,7 @@ async exportGoogleSheet (req,res) {
         People.CreatedDateTime  = getDateString(DT,'th') + ' ' + getTime(DT),
         People.CreatedBy        = People.UF + ' ' + People.UL
 
-        let CSV = [
+        CSV = [
             People.ID, 
             People.Picture,
             People.FirstName,
@@ -378,6 +395,7 @@ async exportGoogleSheet (req,res) {
             People.Color,
             People.Location,
             People.GooglePlaceName, 
+            People.Remark,
             People.CreatedDateTime,
             People.CreatedBy
         ]
@@ -400,7 +418,7 @@ async exportGoogleSheet (req,res) {
         const response = await googleSheets.spreadsheets.values.update({
             auth, 
             spreadsheetId: process.env.SPREADSHEET_ID,
-            range: 'People!A2:K' + (CSVList.length + 1),
+            range: 'People',
             valueInputOption: 'RAW',
             resource: { values: CSVList }
         })
