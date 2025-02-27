@@ -376,14 +376,13 @@ async exportGoogleSheet (req,res) {
     PeopleList.map((People) => {
         let DT = new Date(People.CreatedDateTime)
 
-        if (process.env.TZ_HOUR != null) {
-            DT.setHours( DT.getHours() + Number(process.env.TZ_HOUR) )
-        }
-
         People.Picture          = (People.Picture == null) ? '' : process.env.UPLOADS_URL + People.Picture 
         People.Location         = (People.Latitude == null) ? '' : People.Latitude +','+ People.Longitude
         People.CreatedDateTime  = getDateString(DT,'th') + ' ' + getTime(DT),
         People.CreatedBy        = People.UF + ' ' + People.UL
+
+        if (People.GooglePlaceName == null) { People.GooglePlaceName = '' }
+        if (People.Remark == null) { People.Remark = '' }
 
         CSV = [
             People.ID, 
