@@ -348,7 +348,7 @@ async changeDistrict (req,res) {
 
 async exportGoogleSheet (req,res) {
     var PeopleList, CSV, CSVList = []
-
+/*
     CSV = [
         'People ID', 
         'รูปภาพ', 
@@ -363,6 +363,8 @@ async exportGoogleSheet (req,res) {
         'วันเวลาที่สร้าง',
         'ผู้สร้าง'
     ]
+*/
+    CSV = ['Record ID','Image','ชื่อ','นามสกุล','ชื่อเล่น','โทรศัพท์','สี','พิกัด','สถานที่','Time stamp','User']															
 
     CSVList.push(CSV) 
 
