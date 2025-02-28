@@ -363,11 +363,11 @@ async exportGoogleSheet (req,res) {
         'วันเวลาที่สร้าง',
         'ผู้สร้าง'
     ]
-*/
-    CSV = ['Record ID','Image','ชื่อ','นามสกุล','ชื่อเล่น','โทรศัพท์','สี','พิกัด','สถานที่','Time stamp','User']															
+
+    CSV = ['Record ID','Image','ชื่อ','นามสกุล','ชื่อเล่น','โทรศัพท์','สี','พิกัด','สถานที่','หมายเหตุ','Time stamp','User']															
 
     CSVList.push(CSV) 
-
+*/
     try {
         PeopleList = await TeamModel.searchPeopleCSV( '', '' )
     } catch (error) {
@@ -419,7 +419,7 @@ async exportGoogleSheet (req,res) {
         const response = await googleSheets.spreadsheets.values.update({
             auth, 
             spreadsheetId: process.env.SPREADSHEET_ID,
-            range: 'People',
+            range: 'People!A2:L' + (CSVList.length + 1),
             valueInputOption: 'RAW',
             resource: { values: CSVList }
         })
