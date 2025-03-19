@@ -1,0 +1,53 @@
+<div class="container-fluid my-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6 col-12 fs-3">{{Label.PollingStation}}</div>
+                <div class="col-sm-6 col-12 text-end pt-2">
+                    <a href="/back/team/PollingStation/add"><i class="fa fa-plus"></i> {{Label.Add}}</a> &nbsp; 
+                    <a href="/back/team/PollingStation/list"><i class="fa fa-list"></i> {{Label.List}}</a>
+                </div>
+            </div>
+        </div><!-- card-header -->
+        <div class="card-body">
+        <form class="form-horizontal" method="post" action="/back/team/PollingStation/search">
+            <div class="form-group row">
+                <div class="col-4">{{{FormControl.SelectField}}}</div>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="SearchTerm" name="SearchTerm" 
+                    value="{{FormControl.SearchTerm}}" placeholder="{{Label.EnterSearchTerm}}" onkeyup="KeySearchTerm()"> 
+                </div>
+                <div class="col-4">
+                    <input type="submit" id="Action" class="btn btn-info" value="{{Label.Search}}" disabled>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>{{Label.PollingStationName}}</th>
+                <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each PollingStationList}}                    
+                <tr>
+                <td>{{this.ID}}</td>
+                <td>{{this.PollingStationName}}</td>
+                <td>
+                    <a href="/back/team/PollingStation/view/{{this.ID}}"><i class="fa fa-search"></i> {{this.View}}</a> &nbsp; 
+                    <a href="/back/team/PollingStation/edit/{{this.ID}}"><i class="fa fa-edit"></i> {{this.Edit}}</a> 
+                </td>
+                </tr>
+            {{/each}}                  
+            </tbody>
+        </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div><!-- container-fluid -->
+
+{{> Back/PollingStation/ListPollingStationScript}}

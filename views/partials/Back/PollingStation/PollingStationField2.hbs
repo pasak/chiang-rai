@@ -1,0 +1,73 @@
+<div class="form-group row">
+    <label for="ElectionDistrictNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.ElectionDistrictNumber}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="hidden" id="ElectionDistrictNumber" name="ElectionDistrictNumber" 
+            value="{{PollingStation.ElectionDistrictNumber}}">
+
+        <!-- Buttons -->
+        <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
+            {{#ifCond PollingStation.ElectionDistrictNumber '==' 1}} btn-primary {{else}} btn-secondary {{/ifCond}}"  
+            onclick="clickNumber(this, 'ElectionDistrictNumber', 1)">1</button>
+        <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
+            {{#ifCond PollingStation.ElectionDistrictNumber '==' 2}} btn-primary {{else}} btn-secondary {{/ifCond}}"  
+            onclick="clickNumber(this, 'ElectionDistrictNumber', 2)">2</button>
+        <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
+            {{#ifCond PollingStation.ElectionDistrictNumber '==' 3}} btn-primary {{else}} btn-secondary {{/ifCond}}"  
+            onclick="clickNumber(this, 'ElectionDistrictNumber', 3)">3</button>
+        <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
+            {{#ifCond PollingStation.ElectionDistrictNumber '==' 4}} btn-primary {{else}} btn-secondary {{/ifCond}}"  
+            onclick="clickNumber(this, 'ElectionDistrictNumber', 4)">4</button>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="PollingStationNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.PollingStationNumber}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" min="1" class="form-control" id="PollingStationNumber" name="PollingStationNumber" value="{{PollingStation.PollingStationNumber}}" placeholder="{{Label.PollingStationNumber}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="PollingStationName" class="{{FormControl.LabelClass}} col-form-label">{{Label.PollingStationName}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="PollingStationName" name="PollingStationName" value="{{PollingStation.PollingStationName}}" placeholder="{{Label.PollingStationName}}" 
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="RiskLevel" class="{{FormControl.LabelClass}} col-form-label">{{Label.RiskLevel}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="hidden" id="RiskLevel" name="RiskLevel" value="{{PollingStation.RiskLevel}}">
+
+        <!-- Buttons -->
+        <button type="button" class="btn rounded-pill px-3 py-2 btnRiskLevel
+            {{#ifCond PollingStation.RiskLevel '==' 1}} btn-primary {{else}} btn-secondary {{/ifCond}}" 
+            onclick="clickNumber(this, 'RiskLevel', 1)">1</button>
+        <button type="button" class="btn rounded-pill px-3 py-2 btnRiskLevel
+            {{#ifCond PollingStation.RiskLevel '==' 2}} btn-primary {{else}} btn-secondary {{/ifCond}}" 
+            onclick="clickNumber(this, 'RiskLevel', 2)">2</button>
+        <button type="button" class="btn rounded-pill px-3 py-2 btnRiskLevel
+            {{#ifCond PollingStation.RiskLevel '==' 3}} btn-primary {{else}} btn-secondary {{/ifCond}}" 
+            onclick="clickNumber(this, 'RiskLevel', 3)">3</button>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Remark" class="{{FormControl.fullLabelClass}} col-form-label">{{Label.Remark}}</label>
+    <div class="{{FormControl.fullInputClass}}">
+        <textarea class="form-control" id="Remark" name="Remark" placeholder="{{Label.Remark}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly {{/ifCond}}>{{PollingStation.Remark}}</textarea>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="IsActive" class="{{FormControl.LabelClass}} col-form-label">{{Label.IsActive}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="checkbox" class="pt-3" id="IsActive" name="IsActive" value="Y" 
+            {{#ifCond PollingStation.IsActive '==' 'Y'}}checked{{/ifCond}}
+            {{#ifCond FormControl.Mode '==' 'View'}} readonly{{/ifCond}}>
+    </div>
+</div>
+

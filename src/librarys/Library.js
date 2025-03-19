@@ -150,6 +150,12 @@ HaveVotingRights:       (L=='th') ? 'มีสิทธิเลือกตั�
 NoHaveVotingRights:     (L=='th') ? 'ไม่มีสิทธิเลือกตั้ง' : (L=='zh') ? '' : 'No have Voting Rights', 
 Remark:         (L=='th') ? 'หมายเหตุ' : (L=='zh') ? '评论' : 'Remark', 
 
+PollingStation: (L=='th') ? 'หน่วยเลือกตั้ง' : (L=='zh') ? '' : 'Polling Station', 
+VillageNumber:  (L=='th') ? 'หมู่ที่' : (L=='zh') ? '' : 'Village number', 
+Community:      (L=='th') ? 'ชุมชน' : (L=='zh') ? '' : 'Community', 
+RiskLevel:      (L=='th') ? 'ระดับความเสี่ยง' : (L=='zh') ? '' : 'Risk Level', 
+
+
 SelectField:        (L=='th') ? 'เลือกฟิลด์' : (L=='zh') ? '' : 'Select field', 
 EnterSearchTerm:    (L=='th') ? 'ป้อนคำค้นหา' : (L=='zh') ? '' : 'Enter a search term.', 
 SelectDistrict:     (L=='th') ? 'เลือกอำเภอ / เขต' : (L=='zh') ? '' : 'Select district', 

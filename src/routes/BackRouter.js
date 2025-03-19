@@ -89,6 +89,21 @@ BackRouter.get('/team/edit', TeamController4.edit)
 BackRouter.post('/team/save', upload.single('file'), function(req, res){ TeamController4.save(req,res) })
 
 
+const TeamController5 = require('../modules/Team/TeamController5') 
+
+BackRouter.get('/team/PollingStation/add', TeamController5.addPollingStation) 
+
+BackRouter.post('/team/PollingStation/save', function(req, res){ TeamController5.savePollingStation(req,res) })
+
+BackRouter.get('/team/PollingStation/list', TeamController5.listPollingStation) 
+
+BackRouter.get('/team/PollingStation/view/:PollingStationID', TeamController5.viewPollingStation) 
+
+BackRouter.get('/team/PollingStation/edit/:PollingStationID', TeamController5.editPollingStation) 
+
+BackRouter.post('/team/PollingStation/search', function(req, res){ TeamController5.searchPollingStation(req,res) })
+
+
 const MasterFieldController = require('../modules/MasterField/MasterFieldController') 
 
 BackRouter.get('/MasterField/list', MasterFieldController.list) 
