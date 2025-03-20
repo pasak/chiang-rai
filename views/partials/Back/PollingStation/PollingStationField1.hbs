@@ -27,16 +27,24 @@
         <!-- Buttons -->
         <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
             {{#ifCond PollingStation.ElectionDistrictNumber '==' 1}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}"  
-            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 1, {{PollingStation.community_ID}})">1</button>
+            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 1, {{PollingStation.community_ID}})" 
+            {{#ifCond FormControl.Mode '==' 'View'}} disabled {{/ifCond}}
+            >1</button>
         <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
             {{#ifCond PollingStation.ElectionDistrictNumber '==' 2}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}"  
-            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 2, {{PollingStation.community_ID}})">2</button>
+            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 2, {{PollingStation.community_ID}})"
+            {{#ifCond FormControl.Mode '==' 'View'}} disabled {{/ifCond}}
+            >2</button>
         <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
             {{#ifCond PollingStation.ElectionDistrictNumber '==' 3}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}"  
-            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 3, {{PollingStation.community_ID}})">3</button>
+            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 3, {{PollingStation.community_ID}})"
+            {{#ifCond FormControl.Mode '==' 'View'}} disabled {{/ifCond}}
+            >3</button>
         <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
             {{#ifCond PollingStation.ElectionDistrictNumber '==' 4}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}"  
-            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 4, {{PollingStation.community_ID}})">4</button>
+            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 4, {{PollingStation.community_ID}})"
+            {{#ifCond FormControl.Mode '==' 'View'}} disabled {{/ifCond}}
+            >4</button>
     </div>
 </div>
 

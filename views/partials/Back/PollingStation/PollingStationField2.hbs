@@ -22,13 +22,19 @@
         <!-- Buttons -->
         <button type="button" class="btn rounded-pill px-3 py-2 btnRiskLevel
             {{#ifCond PollingStation.RiskLevel '==' 1}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}" 
-            onclick="clickNumber(this, 'RiskLevel', 1)">1</button>
+            onclick="clickNumber(this, 'RiskLevel', 1)"
+            {{#ifCond FormControl.Mode '==' 'View'}} disabled {{/ifCond}}
+            >1</button>
         <button type="button" class="btn rounded-pill px-3 py-2 btnRiskLevel
             {{#ifCond PollingStation.RiskLevel '==' 2}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}" 
-            onclick="clickNumber(this, 'RiskLevel', 2)">2</button>
+            onclick="clickNumber(this, 'RiskLevel', 2)"
+            {{#ifCond FormControl.Mode '==' 'View'}} disabled {{/ifCond}}
+            >2</button>
         <button type="button" class="btn rounded-pill px-3 py-2 btnRiskLevel
             {{#ifCond PollingStation.RiskLevel '==' 3}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}" 
-            onclick="clickNumber(this, 'RiskLevel', 3)">3</button>
+            onclick="clickNumber(this, 'RiskLevel', 3)"
+            {{#ifCond FormControl.Mode '==' 'View'}} disabled {{/ifCond}}
+            >3</button>
     </div>
 </div>
 
