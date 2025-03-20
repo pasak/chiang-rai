@@ -107,7 +107,7 @@ Telephone:      (L=='th') ? 'โทรศัพท์' : (L=='en') ? 'Telephone'
 Email:          (L=='th') ? 'อีเมล' : (L=='zh') ? '电子邮件' : 'Email', 
 Picture:        (L=='th') ? 'รูปภาพ' : (L=='zh') ? '图片' : 'Picture', 
 BirthDate:      (L=='th') ? 'วันเกิด' : (L=='zh') ? '出生日期' : 'Birth Date', 
-ElectionDistrictNumber: (L=='th') ? 'เขตเลือกตั้งที่' : (L=='zh') ? '选区编号' : 'Election district number', 
+ElectionDistrictNumber: (L=='th') ? 'เขตเลือกตั้ง' : (L=='zh') ? '选区编号' : 'Election district number', 
 
 Province:       (L=='th') ? 'จังหวัด' : (L=='zh') ? '省' : 'Province', 
 District:       (L=='th') ? 'อำเภอ / เขต' : (L=='zh') ? '' : 'District', 
