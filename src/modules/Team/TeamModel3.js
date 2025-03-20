@@ -40,11 +40,13 @@ getPollingStation( PollingStationID ) {
     return new Promise(function(myResolve, myReject) {
         let sql = 
         "SELECT PS.*, S.district_ID, S.ThaiName AS SubDistrict, D.province_ID, D.ThaiName AS District, " + 
-        "P.ThaiName AS Province, G.Name AS GooglePlaceName FROM polling_station AS PS " + 
+        "P.ThaiName AS Province, G.Name AS GooglePlaceName, C.Name AS Community " + 
+        "FROM polling_station AS PS " + 
         "INNER JOIN sub_district AS S ON S.ID = PS.sub_district_ID " + 
         "INNER JOIN district AS D ON D.ID = S.district_ID " + 
         "INNER JOIN province AS P ON P.ID = D.province_ID " + 
         "LEFT JOIN google_place AS G ON G.ID = PS.google_place_ID " + 
+        "LEFT JOIN community AS C ON C.ID = PS.community_ID " + 
         "WHERE PS.ID = ? " 
 
         //console.log('TeamModel 246 sql '+sql+PeopleID)
@@ -55,5 +57,20 @@ getPollingStation( PollingStationID ) {
         }) 
     }) 
 } // getPollingStation
+
+getCommunityList( ParentType, ParentID, ElectionDistrictNumber ) {
+    let cThis = this;
+
+    return new Promise(function(myResolve, myReject) {
+        let sql = "SELECT * FROM community " + 
+                  "WHERE ParentType = ? AND ParentID = ? AND ElectionDistrictNumber = ? " + 
+                  "ORDER BY Name ASC"
+
+        cThis.db.query(sql,[ParentType, ParentID, ElectionDistrictNumber], function (error, result) {
+            if (error) throw  error;
+            myResolve( result );
+        }) 
+    }) 
+} // getCommunityList
 
 } // TeamModel3

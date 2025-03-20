@@ -1,34 +1,3 @@
-{{#ifCond People.ID '!=' 'add'}}
-<div class="form-group row">
-    <label for="ID" class="{{FormControl.LabelClass}} col-form-label">ID</label>
-    <div class="{{FormControl.InputClass}}">
-        <input type="text" class="form-control" value="{{PollingStation.ID}}" readonly>
-    </div>
-</div>
-{{/ifCond}}
-
-<div class="form-group row">
-    <label for="province_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.Province}}</label>
-    <div class="{{FormControl.InputClass}}" id="SelectProvince">
-        {{#ifCond FormControl.Mode '==' 'View'}}  
-            <input type="text" class="form-control" value="{{PollingStation.Province}}" readonly>
-        {{else}} 
-            {{{FormControl.SelectProvince}}}
-        {{/ifCond}}
-    </div>
-</div>
-
-<div class="form-group row">
-    <label for="district_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.District}}</label>
-    <div class="{{FormControl.InputClass}}" id="SelectDistrict">
-        {{#ifCond FormControl.Mode '==' 'View'}}  
-            <input type="text" class="form-control" value="{{PollingStation.District}}" readonly>
-        {{else}} 
-            {{{FormControl.SelectDistrict}}}
-        {{/ifCond}}
-    </div>
-</div>
-
 <div class="form-group row">
     <label for="sub_district_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.SubDistrict}}</label>
     <div class="{{FormControl.InputClass}}" id="SelectSubDistrict">
@@ -50,9 +19,34 @@
 </div>
 
 <div class="form-group row">
+    <label for="ElectionDistrictNumber" class="col-5 col-form-label">{{Label.ElectionDistrictNumber}}</label>
+    <div class="col-7">
+        <input type="hidden" id="ElectionDistrictNumber" name="ElectionDistrictNumber" 
+            value="{{PollingStation.ElectionDistrictNumber}}">
+
+        <!-- Buttons -->
+        <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
+            {{#ifCond PollingStation.ElectionDistrictNumber '==' 1}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}"  
+            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 1, {{PollingStation.community_ID}})">1</button>
+        <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
+            {{#ifCond PollingStation.ElectionDistrictNumber '==' 2}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}"  
+            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 2, {{PollingStation.community_ID}})">2</button>
+        <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
+            {{#ifCond PollingStation.ElectionDistrictNumber '==' 3}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}"  
+            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 3, {{PollingStation.community_ID}})">3</button>
+        <button type="button" class="btn rounded-pill px-3 py-2 btnElectionDistrictNumber
+            {{#ifCond PollingStation.ElectionDistrictNumber '==' 4}} btn-people-party {{else}} btn-outline-secondary {{/ifCond}}"  
+            onclick="clickElectionDistrictNumber(this, 'ElectionDistrictNumber', 4, {{PollingStation.community_ID}})">4</button>
+    </div>
+</div>
+
+<div class="form-group row">
     <label for="Community" class="{{FormControl.LabelClass}} col-form-label">{{Label.Community}}</label>
-    <div class="{{FormControl.InputClass}}">
-        <input type="text" class="form-control" id="Community" name="Community" value="{{PollingStation.Community}}" placeholder="{{Label.Community}}"
-        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    <div class="{{FormControl.InputClass}}" id="SelectCommunity">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{PollingStation.Community}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectCommunity}}}
+        {{/ifCond}}
     </div>
 </div>

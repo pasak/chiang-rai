@@ -37,7 +37,6 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                <th>ID</th>
                 <th>{{Label.PollingStationName}}</th>
                 <th>&nbsp;</th>
                 </tr>
@@ -45,7 +44,6 @@
             <tbody>
             {{#each PollingStationList}}                    
                 <tr>
-                <td>{{this.ID}}</td>
                 <td>{{this.PollingStationName}}</td>
                 <td>
                     <a href="/back/team/PollingStation/view/{{this.ID}}"><i class="fa fa-search"></i> {{this.View}}</a> &nbsp; 

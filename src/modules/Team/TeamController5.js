@@ -22,11 +22,12 @@ async addPollingStation (req,res) {
             Latitude:               (req.session.Latitude == null) ? '19.90858' : req.session.Latitude, 
             Longitude:              (req.session.Longitude == null) ? '99.8325' : req.session.Longitude,     
             ElectionDistrictNumber: 0, 
+            community_ID:           0,
             PollingStationNumber:   0, 
             RiskLevel:              0,
             IsActive:               'Y' 
         }
-
+/*
         var SelectProvince = "<select name=province_ID id=province_ID class='form-control' onchange='changeProvince()'>" 
         //var SelectProvince = "<select name=province_ID id=province_ID class='form-control'>" 
 
@@ -53,11 +54,11 @@ async addPollingStation (req,res) {
         })
 
         SelectDistrict += "</select>"
-
+*/
 
         var SelectSubDistrict = "<select name=sub_district_ID id=sub_district_ID class='form-control'>" 
 
-        List = await TeamModel.getSubDistrictListByDistrictID(PollingStation.district_ID)
+        var List = await TeamModel.getSubDistrictListByDistrictID(PollingStation.district_ID)
 
         List.map((SubDistrict) => {
             let s = (SubDistrict.ID == PollingStation.sub_district_ID) ? 'selected' : '' 
@@ -79,8 +80,8 @@ async addPollingStation (req,res) {
             InputClass:         'col-sm-9 col-6',
             fullLabelClass:     'col-sm-3',
             fullInputClass:     'col-sm-9',
-            SelectProvince:     SelectProvince, 
-            SelectDistrict:     SelectDistrict,
+            // SelectProvince:     SelectProvince, 
+            // SelectDistrict:     SelectDistrict,
             SelectSubDistrict:  SelectSubDistrict,
         }
 
@@ -97,10 +98,11 @@ async savePollingStation (req,res) {
         res.redirect('/back/login-line.html')
     } else {
         var data = {
-            IsActive:               (req.body.IsActive == 'Y') ? 'Y' : 'N',
+            // IsActive:               (req.body.IsActive == 'Y') ? 'Y' : 'N',
+            IsActive:               'Y',
             sub_district_ID:        req.body.sub_district_ID,
             VillageNumber:          req.body.VillageNumber,
-            Community:              req.body.Community,
+            community_ID:           req.body.community_ID,
             Latitude:               req.body.Latitude,
             Longitude:              req.body.Longitude,
             ElectionDistrictNumber: req.body.ElectionDistrictNumber,
@@ -227,7 +229,7 @@ async editPollingStation (req,res) {
         const Label = getLabel(User.Language)
 
         var PollingStation = await TeamModel3.getPollingStation( req.params.PollingStationID )
-
+/*
         var SelectProvince = "<select name=province_ID id=province_ID class='form-control' onchange='changeProvince()'>" 
         //var SelectProvince = "<select name=province_ID id=province_ID class='form-control'>" 
 
@@ -254,11 +256,11 @@ async editPollingStation (req,res) {
         })
 
         SelectDistrict += "</select>"
-
+*/
 
         var SelectSubDistrict = "<select name=sub_district_ID id=sub_district_ID class='form-control'>" 
 
-        List = await TeamModel.getSubDistrictListByDistrictID(PollingStation.district_ID)
+        var List = await TeamModel.getSubDistrictListByDistrictID(PollingStation.district_ID)
 
         List.map((SubDistrict) => {
             let s = (SubDistrict.ID == PollingStation.sub_district_ID) ? 'selected' : '' 
@@ -268,6 +270,18 @@ async editPollingStation (req,res) {
 
         SelectSubDistrict += "</select>"
 
+        var SelectCommunity = "<select name=community_ID id=community_ID class='form-control'>" 
+
+        List = await TeamModel3.getCommunityList('district', 'TH5701', PollingStation.ElectionDistrictNumber)
+    
+        List.map((Community) => {
+            let s = (Community.ID == PollingStation.community_ID) ? 'selected' : ''
+    
+            SelectCommunity += "<option value=" + Community.ID +" " + s +">"+ Community.Name + "</option>"
+        })
+    
+        SelectCommunity += "</select>"
+        
         const FormControl = { 
             System:             'Team',
             Page:               'PollingStation',
@@ -279,9 +293,10 @@ async editPollingStation (req,res) {
             InputClass:         'col-sm-9 col-6',
             fullLabelClass:     'col-sm-3',
             fullInputClass:     'col-sm-9',
-            SelectProvince:     SelectProvince, 
-            SelectDistrict:     SelectDistrict,
+            // SelectProvince:     SelectProvince, 
+            // SelectDistrict:     SelectDistrict,
             SelectSubDistrict:  SelectSubDistrict,
+            SelectCommunity:    SelectCommunity
         }
 
         res.render('Team/EditPollingStation',{ FormControl, Label, PollingStation })
@@ -334,5 +349,21 @@ async searchPollingStation (req,res) {
         res.render('Team/ListPollingStation',{ FormControl, Label, PollingStationList })
     }
 } // searchPollingStation
+
+async clickElectionDistrictNumber (req,res) {
+    var SelectCommunity = "<select name=community_ID id=community_ID class='form-control'>" 
+
+    var List = await TeamModel3.getCommunityList('district', 'TH5701', req.params.ElectionDistrictNumber)
+
+    List.map((Community) => {
+        let s = (Community.ID == req.params.CommunityID) ? 'selected' : ''
+
+        SelectCommunity += "<option value=" + Community.ID +" " + s +">"+ Community.Name + "</option>"
+    })
+
+    SelectCommunity += "</select>"
+
+    res.send({ SelectCommunity: SelectCommunity })
+} // clickElectionDistrictNumber
     
 } // TeamController5

@@ -1,0 +1,58 @@
+{{#ifCond People.ID '!=' 'add'}}
+<div class="form-group row">
+    <label for="ID" class="{{FormControl.LabelClass}} col-form-label">ID</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" value="{{PollingStation.ID}}" readonly>
+    </div>
+</div>
+{{/ifCond}}
+
+<div class="form-group row">
+    <label for="province_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.Province}}</label>
+    <div class="{{FormControl.InputClass}}" id="SelectProvince">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{PollingStation.Province}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectProvince}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="district_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.District}}</label>
+    <div class="{{FormControl.InputClass}}" id="SelectDistrict">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{PollingStation.District}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectDistrict}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="sub_district_ID" class="{{FormControl.LabelClass}} col-form-label">{{Label.SubDistrict}}</label>
+    <div class="{{FormControl.InputClass}}" id="SelectSubDistrict">
+        {{#ifCond FormControl.Mode '==' 'View'}}  
+            <input type="text" class="form-control" value="{{PollingStation.SubDistrict}}" readonly>
+        {{else}} 
+            {{{FormControl.SelectSubDistrict}}}
+        {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="VillageNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.VillageNumber}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="number" class="form-control" id="VillageNumber" name="VillageNumber" min="1" 
+            value="{{PollingStation.VillageNumber}}" placeholder="{{Label.VillageNumber}}" 
+            {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="Community" class="{{FormControl.LabelClass}} col-form-label">{{Label.Community}}</label>
+    <div class="{{FormControl.InputClass}}">
+        <input type="text" class="form-control" id="Community" name="Community" value="{{PollingStation.Community}}" placeholder="{{Label.Community}}"
+        {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
+    </div>
+</div>

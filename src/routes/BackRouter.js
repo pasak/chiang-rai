@@ -103,6 +103,8 @@ BackRouter.get('/team/PollingStation/edit/:PollingStationID', TeamController5.ed
 
 BackRouter.post('/team/PollingStation/search', function(req, res){ TeamController5.searchPollingStation(req,res) })
 
+BackRouter.get('/team/api/clickElectionDistrictNumber/:ElectionDistrictNumber/:CommunityID', TeamController5.clickElectionDistrictNumber) 
+
 
 const MasterFieldController = require('../modules/MasterField/MasterFieldController') 
 

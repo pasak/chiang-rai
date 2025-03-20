@@ -2,14 +2,40 @@
 function clickNumber( button, id, number ) {
     $('#'+id).val(number);
 
-    if ($('.btn' + id).hasClass('btn-primary')) {
-        $('.btn' + id).removeClass('btn-primary');
-        $('.btn' + id).addClass('btn-secondary');
+    if ($('.btn' + id).hasClass('btn-people-party')) {
+        $('.btn' + id).removeClass('btn-people-party');
+        $('.btn' + id).addClass('btn-outline-secondary');
     }
 
-    button.classList.remove('btn-secondary');
-    button.classList.add('btn-primary');
+    button.classList.remove('btn-outline-secondary');
+    button.classList.add('btn-people-party');
 } // clickNumber
+
+function clickElectionDistrictNumber( button, id, number, CommunityID ) {
+    clickNumber(button, id, number);
+
+    var URL = $('#BACKEND_URL').val() + 
+        'team/api/clickElectionDistrictNumber/' + number +'/'+ CommunityID
+
+    //$('#Debug').text(URL)
+
+    fetch(URL)
+    .then( function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code:' +
+            response.status);
+            return;
+        }
+
+        // Examine the text in the response
+        response.json().then(function(html) {
+            $('#SelectCommunity').html(html.SelectCommunity);
+        });
+    })
+    .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+    });    
+} // clickElectionDistrictNumber
 
 function keyPostalCode() {
     var PostalCode = $('#PostalCode').val() 
