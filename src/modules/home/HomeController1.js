@@ -30,7 +30,7 @@ async home (req,res) {
 async backup (req,res) {
     var fs = require('fs');
     var spawn = require('child_process').spawn;
-    var wstream = fs.createWriteStream('public/uploads/' + process.env.BACKUP_KEY + 'my-prachin.sql');
+    var wstream = fs.createWriteStream('public/uploads/' + process.env.BACKUP_KEY + 'chring-rai.sql');
     
     var mysqldump = spawn('mysqldump', [
         '--no-defaults',
