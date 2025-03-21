@@ -157,4 +157,8 @@ BackRouter.get('/operation/api/SelectMasterField/:FieldName', OperationControlle
 BackRouter.post('/operation/search', function(req, res){ OperationController2.search(req,res) })
 
 
+const PollingStationController = require('../modules/PollingStation/PollingStationController')
+
+BackRouter.get('/PollingStation/exportGoogleSheet', PollingStationController.exportGoogleSheet) 
+
 module.exports = BackRouter

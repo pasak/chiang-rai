@@ -73,4 +73,29 @@ getCommunityList( ParentType, ParentID, ElectionDistrictNumber ) {
     }) 
 } // getCommunityList
 
+searchPollingStationCSV() {
+    let cThis = this;
+
+    return new Promise(function(myResolve, myReject) {
+        let sql = 
+        "SELECT PS.*, S.district_ID, S.ThaiName AS SubDistrict, D.province_ID, D.ThaiName AS District, " + 
+        "P.ThaiName AS Province, G.Name AS GooglePlaceName, C.Name AS Community, U.FirstName, U.LastName " + 
+        "FROM polling_station AS PS " + 
+        "INNER JOIN sub_district AS S ON S.ID = PS.sub_district_ID " + 
+        "INNER JOIN district AS D ON D.ID = S.district_ID " + 
+        "INNER JOIN province AS P ON P.ID = D.province_ID " + 
+        "LEFT JOIN google_place AS G ON G.ID = PS.google_place_ID " + 
+        "LEFT JOIN community AS C ON C.ID = PS.community_ID " + 
+        "LEFT JOIN user AS U ON U.ID = PS.CreatedBy_user_ID "  
+        "ORDER BY PS.ID "
+
+        //console.log('TeamModel 246 sql '+sql+PeopleID)
+
+        cThis.db.query(sql,[], function (error, result) {
+            if (error) throw  error;
+            myResolve( result );
+        }) 
+    }) 
+} // getPollingStation
+
 } // TeamModel3
