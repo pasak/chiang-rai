@@ -37,7 +37,7 @@ async backup (req,res) {
         '-h'+process.env.DATABASE_HOST,
         '-u'+process.env.DATABASE_USER,
         '-p'+process.env.DATABASE_PASSWORD,
-        process.env.DATABASE_NAME,
+        process.env.DATABASE_NAME, 
     ]);
     
     mysqldump

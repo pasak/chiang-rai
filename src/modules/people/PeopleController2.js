@@ -418,7 +418,7 @@ async exportGoogleSheet (req,res) {
     try {
         const response = await googleSheets.spreadsheets.values.update({
             auth, 
-            spreadsheetId: process.env.SPREADSHEET_ID,
+            spreadsheetId: process.env.PEOPLE_SHEET_ID,
             range: 'People!A2:L' + (CSVList.length + 1),
             valueInputOption: 'RAW',
             resource: { values: CSVList }

@@ -228,9 +228,9 @@ searchPeopleCSV( Field, SearchTerm ) {
         "SELECT Pe.*, S.district_ID, S.ThaiName AS SubDistrict, D.province_ID, D.ThaiName AS District, " + 
         "P.ThaiName AS Province, G.Name AS GooglePlaceName, U.FirstName AS UF, U.LastName AS UL " + 
         "FROM people AS Pe " + 
-        "INNER JOIN sub_district AS S ON S.ID = Pe.sub_district_ID " + 
-        "INNER JOIN district AS D ON D.ID = S.district_ID " + 
-        "INNER JOIN province AS P ON P.ID = D.province_ID " + 
+        "LEFT JOIN sub_district AS S ON S.ID = Pe.sub_district_ID " + 
+        "LEFT JOIN district AS D ON D.ID = S.district_ID " + 
+        "LEFT JOIN province AS P ON P.ID = D.province_ID " + 
         "LEFT JOIN google_place AS G ON G.ID = Pe.google_place_ID " +
         "LEFT JOIN user AS U ON U.ID = Pe.CreatedBy_user_ID "  
 
@@ -240,7 +240,7 @@ searchPeopleCSV( Field, SearchTerm ) {
 
         sql += "ORDER BY P.ID "
 
-        // console.log('TeamModel 221 '+sql)
+        // console.log('TeamModel 243 '+sql)
 
         cThis.db.query(sql,[], function (error, result) {
             if (error) throw  error;
