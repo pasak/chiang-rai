@@ -1,7 +1,7 @@
 <div class="form-group row">
     <label for="PollingStationNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.PollingStationNumber}}</label>
     <div class="{{FormControl.InputClass}}">
-        <input type="number" min="1" class="form-control" id="PollingStationNumber" name="PollingStationNumber" value="{{PollingStation.PollingStationNumber}}" placeholder="{{Label.PollingStationNumber}}" 
+        <input type="number" min="0" class="form-control" id="PollingStationNumber" name="PollingStationNumber" value="{{PollingStation.PollingStationNumber}}" placeholder="{{Label.PollingStationNumber}}" 
         {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
     </div>
 </div>

@@ -12,7 +12,7 @@
 <div class="form-group row">
     <label for="VillageNumber" class="{{FormControl.LabelClass}} col-form-label">{{Label.VillageNumber}}</label>
     <div class="{{FormControl.InputClass}}">
-        <input type="number" class="form-control" id="VillageNumber" name="VillageNumber" min="1" 
+        <input type="number" class="form-control" id="VillageNumber" name="VillageNumber" min="0" 
             value="{{PollingStation.VillageNumber}}" placeholder="{{Label.VillageNumber}}" 
             {{#ifCond FormControl.Mode '==' 'View'}} readonly> {{else}} > {{/ifCond}}
     </div>
